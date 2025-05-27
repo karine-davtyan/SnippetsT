@@ -1,0 +1,42 @@
+# ────────────────────────────────────────────
+# Query: Catalog Items Metadata By Location
+# ────────────────────────────────────────────
+query GetCatalogItemsMetadataByLocation($locationGid: GID!) {
+  location(gid: $locationGid) {
+    draftVersion {
+      catalogItems {
+        edges {
+          node {
+            gid
+            publishedVersion {
+              name
+              description
+              attributes {
+                edges {
+                  node {
+                    # the attribute name (e.g. “Color”, “Size”, etc)
+                    draftVersion {
+                      name
+                    }
+                    publishedVersion {
+                      # all the term instances for this attribute
+                      termInstances {
+                        edges {
+                          node {
+                            publishedVersion {
+                              displayName
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
