@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<purity-config version="14.5.1.231204-6829-cc8f270d">
+	<references/>
+	<component-mappings>
+		<propertyMappings/>
+	</component-mappings>
+
+<!-- (ONE Metadata Reader) --><step mode="NORMAL" className="com.ataccama.dqc.tasks.io.mmm.reader.MMMReader" disabled="false" id="ONE Metadata Reader">
+		<properties templateEndMark="#" workflowState="draft" entityType="catalogItem" parentIdColumnName="" serverName="TeranetProd" templateBeginMark="#" entityColumnName="" inputTemplate="$id = &#39;#catId#&#39;" idColumnName="">
+			<childEntities/>
+			<columns>
+				<mMMColumnDef src="catalogItem.name" name="name" type="STRING"/>
+				<mMMColumnDef src="catalogItem.description" name="description" type="STRING"/>
+			</columns>
+			<dataFormatParameters falseValue="false" dateTimeFormat="yyyy-MM-dd HH:mm:ss" decimalSeparator="." dayFormat="yyyy-MM-dd" trueValue="true" dateFormatLocale="en_US" thousandsSeparator=""/>
+			<embeddedEntityStreams>
+				<mMMReaderRootStreamConfig name="termInstances" parentIdColumnName="" attribute="termInstances" entityColumnName="" idColumnName="termName">
+					<childEntities/>
+					<childStreams/>
+					<columns>
+						<mMMEmbeddedEntityColumnDef src="termInstance.displayName" name="displayName" type="STRING"/>
+					</columns>
+					<shadowColumns/>
+				</mMMReaderRootStreamConfig>
+			</embeddedEntityStreams>
+			<shadowColumns/>
+		</properties>
+		<visual-constraints layout="vertical" bounds="264,240,-1,-1"/>
+	</step>
+	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
+		<source endpoint="out" step="ONE Metadata Reader"/>
+		<target endpoint="in" step="out"/>
+		<visual-constraints>
+			<bendpoints/>
+		</visual-constraints>
+	</connection>
+	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
+		<source endpoint="termInstances" step="ONE Metadata Reader"/>
+		<target endpoint="in" step="out 2"/>
+		<visual-constraints>
+			<bendpoints/>
+		</visual-constraints>
+	</connection>
+
+
+
+<!-- (ONE Metadata Reader 2) --><step mode="NORMAL" className="com.ataccama.dqc.tasks.io.mmm.reader.MMMReader" disabled="false" id="ONE Metadata Reader 2">
+		<properties templateEndMark="#" workflowState="draft" entityType="location" parentIdColumnName="" serverName="TeranetProd" templateBeginMark="#" entityColumnName="" inputTemplate="$id = &#39;76639008-0000-7000-0000-000011180f3e&#39;" idColumnName="">
+			<childEntities/>
+			<columns>
+				<mMMColumnDef src="location.name" name="name" type="STRING"/>
+				<mMMColumnDef src="location.description" name="description" type="STRING"/>
+			</columns>
+			<dataFormatParameters falseValue="false" dateTimeFormat="yyyy-MM-dd HH:mm:ss" decimalSeparator="." dayFormat="yyyy-MM-dd" trueValue="true" dateFormatLocale="en_US" thousandsSeparator=""/>
+			<embeddedEntityStreams>
+				<mMMReaderRootStreamConfig name="catalogItems" parentIdColumnName="" attribute="catalogItems" entityColumnName="" idColumnName="catId">
+					<childEntities/>
+					<childStreams/>
+					<columns>
+						<mMMEmbeddedEntityColumnDef src="catalogItem.name" name="name" type="STRING"/>
+						<mMMEmbeddedEntityColumnDef src="catalogItem.description" name="description" type="STRING"/>
+					</columns>
+					<shadowColumns/>
+				</mMMReaderRootStreamConfig>
+			</embeddedEntityStreams>
+			<shadowColumns/>
+		</properties>
+		<visual-constraints layout="vertical" bounds="288,120,48,48"/>
+	</step>
+	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
+		<source endpoint="catalogItems" step="ONE Metadata Reader 2"/>
+		<target endpoint="in" step="ONE Metadata Reader"/>
+		<visual-constraints>
+			<bendpoints/>
+		</visual-constraints>
+	</connection>
+	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
+		<source endpoint="out" step="ONE Metadata Reader 2"/>
+		<target endpoint="in" step="Trash"/>
+		<visual-constraints>
+			<bendpoints/>
+		</visual-constraints>
+	</connection>
+
+
+
+<!-- (Trash) --><step mode="NORMAL" className="com.ataccama.dqc.tasks.io.Trash" disabled="false" id="Trash">
+		<properties/>
+		<visual-constraints layout="vertical" bounds="600,216,48,48"/>
+	</step>
+
+
+
+<!-- (out) --><step mode="NORMAL" className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" disabled="false" id="out">
+		<properties writeHeader="true" fileName="z0.txt" fieldSeparator=";" generateMetadata="true" stringQualifierEscape="&quot;" writeAllColumns="true" compression="NONE" encoding="UTF-8" lineSeparator="\r\n" stringQualifier="&quot;" useStringQualifierOnAllColumns="false">
+			<columns/>
+			<dataFormatParameters falseValue="false" dateTimeFormat="yyyy-MM-dd HH:mm:ss" decimalSeparator="." dayFormat="yyyy-MM-dd" trueValue="true" dateFormatLocale="en_US" thousandsSeparator=""/>
+		</properties>
+		<visual-constraints layout="vertical" bounds="408,360,-1,-1"/>
+	</step>
+
+
+
+<!-- (out 2) --><step mode="NORMAL" className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" disabled="false" id="out 2">
+		<properties writeHeader="true" fileName="z1.txt" fieldSeparator=";" generateMetadata="true" stringQualifierEscape="&quot;" writeAllColumns="true" compression="NONE" encoding="UTF-8" lineSeparator="\r\n" stringQualifier="&quot;" useStringQualifierOnAllColumns="false">
+			<columns/>
+			<dataFormatParameters falseValue="false" dateTimeFormat="yyyy-MM-dd HH:mm:ss" decimalSeparator="." dayFormat="yyyy-MM-dd" trueValue="true" dateFormatLocale="en_US" thousandsSeparator=""/>
+		</properties>
+		<visual-constraints layout="vertical" bounds="216,360,-1,-1"/>
+	</step>
+
+</purity-config>
