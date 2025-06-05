@@ -6,6 +6,9 @@ query GetLocationCatalogItems($locationGid: GID!) {
         edges {
           node {
             gid
+            draftVersion {
+              name
+            }
             publishedVersion {
               description
               attributes {
@@ -25,3 +28,4 @@ query GetLocationCatalogItems($locationGid: GID!) {
     }
   }
 }
+
