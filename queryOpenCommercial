@@ -1,0 +1,27 @@
+query GetLocationCatalogItems($locationGid: GID!) {
+  location(gid: $locationGid) {
+    draftVersion {
+      name
+      catalogItems {
+        edges {
+          node {
+            gid
+            publishedVersion {
+              description
+              attributes {
+                edges {
+                  node {
+                    draftVersion {
+                      name
+                      description
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
