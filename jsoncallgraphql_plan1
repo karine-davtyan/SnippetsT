@@ -1,0 +1,6 @@
+{
+  "query": "query GetLocationCatalogItems($locationGid: GID!) { location(gid: $locationGid) { draftVersion { name catalogItems { edges { node { gid draftVersion { name } publishedVersion { description attributes { edges { node { draftVersion { name description } } } } } } } } } } }",
+  "variables": {
+    "locationGid": "Your-Location-GID-Here"
+  }
+}
