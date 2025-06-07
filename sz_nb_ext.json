@@ -1,0 +1,3842 @@
+{
+  "data": {
+    "location": {
+      "draftVersion": {
+        "name": "sz_nb_ext",
+        "catalogItems": {
+          "edges": [
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001402c8d6",
+                "draftVersion": {
+                  "name": "nb_dmti_ext"
+                },
+                "publishedVersion": {
+                  "description": null,
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "col",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001402c8da",
+                "draftVersion": {
+                  "name": "nb_pidpan_append_log"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_pidpan maps parcel information from open sources to a master table in a data lake. It includes columns such as PID-NID (Property Identifier) and PAN-NCB (Property Account Number), which uniquely identify properties in New Brunswick. \"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pid_nid",
+                            "description": "Refers to the parcel identifier"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation_timestamp",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001402c8e1",
+                "draftVersion": {
+                  "name": "nb_assessment_append_log"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_assessment refers to a data table that contains assessment information for properties in New Brunswick. It includes up to five years of assessment data for each property, ensuring comprehensive coverage of property values over time\"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstyr_anneval",
+                            "description": "Stores the Assessment year"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstval_valeval",
+                            "description": "Stores the assessed value of a property."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "taxlevy_prefis",
+                            "description": "Stores the the tax levy amount associated with a property assessment."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "taxlevyprev_prefisprec",
+                            "description": "Stores the the previous tax levy amount associated with a property assessment."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation_timestamp",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001402c8eb",
+                "draftVersion": {
+                  "name": "nb_assessment_append_log_old"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_assessment refers to a data table that contains assessment information for properties in New Brunswick. It includes up to five years of assessment data for each property, ensuring comprehensive coverage of property values over time\"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstyr_anneval",
+                            "description": "Stores the Assessment year"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstval_valeval",
+                            "description": "Stores the assessed value of a property."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "taxlevy_prefis",
+                            "description": "Stores the the tax levy amount associated with a property assessment."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "taxlevyprev_prefisprec",
+                            "description": "Stores the the previous tax levy amount associated with a property assessment."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation_timestamp",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001402c8f5",
+                "draftVersion": {
+                  "name": "nb_assessment_init"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_assessment refers to a data table that contains assessment information for properties in New Brunswick. It includes up to five years of assessment data for each property, ensuring comprehensive coverage of property values over time\"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstyr_anneval",
+                            "description": "Stores the Assessment year"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstval_valeval",
+                            "description": "Stores the assessed value of a property."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "taxlevy_prefis",
+                            "description": "Stores the the tax levy amount associated with a property assessment."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "taxlevyprev_prefisprec",
+                            "description": "Stores the the previous tax levy amount associated with a property assessment."
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001402c8fd",
+                "draftVersion": {
+                  "name": "nb_assessment_ext"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_assessment refers to a data table that contains assessment information for properties in New Brunswick. It includes up to five years of assessment data for each property, ensuring comprehensive coverage of property values over time\"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "col",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001402c901",
+                "draftVersion": {
+                  "name": "nb_dmti_init"
+                },
+                "publishedVersion": {
+                  "description": null,
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pid",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "address",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "street_number_low",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "street_number_hi",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "street_prefix",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "street_lien",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "street_name",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "street_type",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "street_direction",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "suite",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "municipality",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "province",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "fsa",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "postal_code",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "prop_code_designation",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "addressline_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "uaid_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetnumber_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetnumbersuffix_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetpredirection_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetpretype_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetname_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streettype_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetdirection_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "subaddressnumber_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "subaddresstype_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "subaddressisinferred_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "subaddressci_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "uuaid_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "municipality_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "postalmunicipality_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "stateprovince_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "postalcode_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "postalcodeisderived_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "score_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "ci_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "mduflag_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "residentailflag_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "lat_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "lon_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "coordinatetype_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pdc_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "addresspointtype_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetnumberchg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetnumbersuffixchg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetpredirectionchg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetpretypechg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetnamechg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streettypechg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetdirectionchg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "subaddresstypechg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "subaddressnumberchg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "municipalitychg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "stateprovincechg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "postalcodechg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "country_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddressline_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddressmunicipality_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddressprovince_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddresspostalcode_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddresscountry_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddressuaid_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddressscore_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddresslat_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddresslon_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "da_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "rdsid_output",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001402c947",
+                "draftVersion": {
+                  "name": "nb_pidpan_ext"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_pidpan maps parcel information from open sources to a master table in a data lake. It includes columns such as PID-NID (Property Identifier) and PAN-NCB (Property Account Number), which uniquely identify properties in New Brunswick. \"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "col",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001402c94b",
+                "draftVersion": {
+                  "name": "nb_pidpan_append_log_old"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_pidpan maps parcel information from open sources to a master table in a data lake. It includes columns such as PID-NID (Property Identifier) and PAN-NCB (Property Account Number), which uniquely identify properties in New Brunswick. \"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pid_nid",
+                            "description": "Refers to the parcel identifier"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation_timestamp",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001402c952",
+                "draftVersion": {
+                  "name": "nb_assessment"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_assessment refers to a data table that contains assessment information for properties in New Brunswick. It includes up to five years of assessment data for each property, ensuring comprehensive coverage of property values over time\"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstyr_anneval",
+                            "description": "Stores the Assessment year"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstval_valeval",
+                            "description": "Stores the assessed value of a property."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "taxlevy_prefis",
+                            "description": "Stores the the tax levy amount associated with a property assessment."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "taxlevyprev_prefisprec",
+                            "description": "Stores the the previous tax levy amount associated with a property assessment."
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001402c95a",
+                "draftVersion": {
+                  "name": "nb_assessment_snapshot"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_assessment refers to a data table that contains assessment information for properties in New Brunswick. It includes up to five years of assessment data for each property, ensuring comprehensive coverage of property values over time\"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstyr_anneval",
+                            "description": "Stores the Assessment year"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstval_valeval",
+                            "description": "Stores the assessed value of a property."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "taxlevy_prefis",
+                            "description": "Stores the the tax levy amount associated with a property assessment."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "taxlevyprev_prefisprec",
+                            "description": "Stores the the previous tax levy amount associated with a property assessment."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "active",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001402c963",
+                "draftVersion": {
+                  "name": "nb_assessment_old"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_assessment refers to a data table that contains assessment information for properties in New Brunswick. It includes up to five years of assessment data for each property, ensuring comprehensive coverage of property values over time\"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstyr_anneval",
+                            "description": "Stores the Assessment year"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstval_valeval",
+                            "description": "Stores the assessed value of a property."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "taxlevy_prefis",
+                            "description": "Stores the the tax levy amount associated with a property assessment."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "taxlevyprev_prefisprec",
+                            "description": "Stores the the previous tax levy amount associated with a property assessment."
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001402c96b",
+                "draftVersion": {
+                  "name": "nb_dmti"
+                },
+                "publishedVersion": {
+                  "description": null,
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pid",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "address",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "street_number_low",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "street_number_hi",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "street_prefix",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "street_lien",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "street_name",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "street_type",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "street_direction",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "suite",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "municipality",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "province",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "fsa",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "postal_code",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "prop_code_designation",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "addressline_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "uaid_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetnumber_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetnumbersuffix_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetpredirection_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetpretype_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetname_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streettype_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetdirection_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "subaddressnumber_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "subaddresstype_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "subaddressisinferred_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "subaddressci_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "uuaid_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "municipality_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "postalmunicipality_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "stateprovince_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "postalcode_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "postalcodeisderived_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "score_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "ci_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "mduflag_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "residentailflag_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "lat_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "lon_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "coordinatetype_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pdc_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "addresspointtype_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetnumberchg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetnumbersuffixchg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetpredirectionchg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetpretypechg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetnamechg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streettypechg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetdirectionchg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "subaddresstypechg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "subaddressnumberchg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "municipalitychg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "stateprovincechg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "postalcodechg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "country_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddressline_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddressmunicipality_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddressprovince_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddresspostalcode_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddresscountry_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddressuaid_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddressscore_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddresslat_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddresslon_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "da_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "rdsid_output",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001402c9b1",
+                "draftVersion": {
+                  "name": "nb_dmti_old"
+                },
+                "publishedVersion": {
+                  "description": null,
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pid",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "address",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "street_number_low",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "street_number_hi",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "street_prefix",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "street_lien",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "street_name",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "street_type",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "street_direction",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "suite",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "municipality",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "province",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "fsa",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "postal_code",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "prop_code_designation",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "addressline_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "uaid_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetnumber_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetnumbersuffix_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetpredirection_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetpretype_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetname_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streettype_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetdirection_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "subaddressnumber_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "subaddresstype_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "subaddressisinferred_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "subaddressci_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "uuaid_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "municipality_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "postalmunicipality_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "stateprovince_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "postalcode_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "postalcodeisderived_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "score_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "ci_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "mduflag_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "residentailflag_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "lat_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "lon_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "coordinatetype_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pdc_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "addresspointtype_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetnumberchg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetnumbersuffixchg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetpredirectionchg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetpretypechg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetnamechg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streettypechg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "streetdirectionchg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "subaddresstypechg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "subaddressnumberchg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "municipalitychg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "stateprovincechg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "postalcodechg_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "country_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddressline_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddressmunicipality_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddressprovince_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddresspostalcode_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddresscountry_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddressuaid_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddressscore_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddresslat_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "relatedaddresslon_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "da_output",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "rdsid_output",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001402c9f7",
+                "draftVersion": {
+                  "name": "nb_pidpan"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_pidpan maps parcel information from open sources to a master table in a data lake. It includes columns such as PID-NID (Property Identifier) and PAN-NCB (Property Account Number), which uniquely identify properties in New Brunswick. \"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pid_nid",
+                            "description": "Refers to the parcel identifier"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-0000140351a0",
+                "draftVersion": {
+                  "name": "nb_property_assessment_map_snapshot"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"The Property Assessment Map is a geospatial representation of property assessments in New Brunswick, typically provided in a shape file format. It includes parcel information such as property boundaries, area, and coordinates (longitude and latitude). \"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan",
+                            "description": "Refers to the New Brunswick property account number"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "shape_area",
+                            "description": "Property area"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "shape_leng",
+                            "description": "Property perimeter length"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "longitude",
+                            "description": "Centroid longitude"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "latitude",
+                            "description": "Centroid latitude"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "active",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-0000140351a9",
+                "draftVersion": {
+                  "name": "nb_property_assessment_map_wkt"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"The Property Assessment Map is a geospatial representation of property assessments in New Brunswick, typically provided in a shape file format. It includes parcel information such as property boundaries, area, and coordinates (longitude and latitude). \"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "col",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-0000140351ad",
+                "draftVersion": {
+                  "name": "nb_tombstone_append_log"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_tombstone contains data files used in New Brunswick's property assessment system. It serves as a complete replacement file that updates the assess master table with property information, uniquely identified by the Property Account Number (PAN-NCB). The file includes essential details such as property descriptions, assessment values, and tax levies, which are crucial for maintaining accurate property records and assessments in the province.\"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "loc_emp",
+                            "description": "Stores the loc."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "tacd_cdaf",
+                            "description": "Contains the municipality code, which is utilized to look up the corresponding municipality description from the TA file."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "desc",
+                            "description": "The description of a property"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstyr_anneval",
+                            "description": "Stores the Assessment year"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstval_valeval",
+                            "description": "Stores the assessed value of a property."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "taxlevy_prefis",
+                            "description": "Stores the the tax levy amount associated with a property assessment."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation_timestamp",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-0000140351b9",
+                "draftVersion": {
+                  "name": "nb_ta_snapshot"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_ta is part of the New Brunswick's property assessment. It includes fields that map to the assess master table, such as municipality codes and the corresponding municipality name.\"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "tacd",
+                            "description": "Refers to the New Brunswick municipality code"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "tades_descaf",
+                            "description": "Refers to the Municipality name (for the most part)"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "active",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001403520c",
+                "draftVersion": {
+                  "name": "nb_pidpan_init"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_pidpan maps parcel information from open sources to a master table in a data lake. It includes columns such as PID-NID (Property Identifier) and PAN-NCB (Property Account Number), which uniquely identify properties in New Brunswick. \"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pid_nid",
+                            "description": "Refers to the parcel identifier"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-000014035211",
+                "draftVersion": {
+                  "name": "nb_tombstone_old"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_tombstone contains data files used in New Brunswick's property assessment system. It serves as a complete replacement file that updates the assess master table with property information, uniquely identified by the Property Account Number (PAN-NCB). The file includes essential details such as property descriptions, assessment values, and tax levies, which are crucial for maintaining accurate property records and assessments in the province.\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "loc_emp",
+                            "description": "Stores the loc."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "tacd_cdaf",
+                            "description": "Contains the municipality code, which is utilized to look up the corresponding municipality description from the TA file."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "desc",
+                            "description": "The description of a property"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstyr_anneval",
+                            "description": "Stores the Assessment year"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstval_valeval",
+                            "description": "Stores the assessed value of a property."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "taxlevy_prefis",
+                            "description": "Stores the the tax levy amount associated with a property assessment."
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001403521b",
+                "draftVersion": {
+                  "name": "nb_sales_ext"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_sales contains sales information for properties in New Brunswick. It includes details such as sale prices and dates, which are essential for updating assessment records \"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "col",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001403521f",
+                "draftVersion": {
+                  "name": "nb_tombstone_append_log_old"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_tombstone contains data files used in New Brunswick's property assessment system. It serves as a complete replacement file that updates the assess master table with property information, uniquely identified by the Property Account Number (PAN-NCB). The file includes essential details such as property descriptions, assessment values, and tax levies, which are crucial for maintaining accurate property records and assessments in the province.\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "loc_emp",
+                            "description": "Stores the loc."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "tacd_cdaf",
+                            "description": "Contains the municipality code, which is utilized to look up the corresponding municipality description from the TA file."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "desc",
+                            "description": "The description of a property"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstyr_anneval",
+                            "description": "Stores the Assessment year"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstval_valeval",
+                            "description": "Stores the assessed value of a property."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "taxlevy_prefis",
+                            "description": "Stores the the tax levy amount associated with a property assessment."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation_timestamp",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-000014035234",
+                "draftVersion": {
+                  "name": "nb_ta_append_log"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_ta is part of the New Brunswick's property assessment. It includes fields that map to the assess master table, such as municipality codes and the corresponding municipality name.\"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "tacd",
+                            "description": "Refers to the New Brunswick municipality code"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "tades_descaf",
+                            "description": "Refers to the Municipality name (for the most part)"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation_timestamp",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-000014035281",
+                "draftVersion": {
+                  "name": "nb_sales_append_log_old"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_sales contains sales information for properties in New Brunswick. It includes details such as sale prices and dates, which are essential for updating assessment records \"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "trandt_dttran",
+                            "description": "Transaction date"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "sales_value_prix_de_vente",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation_timestamp",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-000014035289",
+                "draftVersion": {
+                  "name": "nb_property_assessment_map_append_log_old"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"The Property Assessment Map is a geospatial representation of property assessments in New Brunswick, typically provided in a shape file format. It includes parcel information such as property boundaries, area, and coordinates (longitude and latitude). \"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan",
+                            "description": "Refers to the New Brunswick property account number"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "shape_leng",
+                            "description": "Property perimeter length"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "shape_area",
+                            "description": "Property area"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "longitude",
+                            "description": "Centroid longitude"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "latitude",
+                            "description": "Centroid latitude"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation_timestamp",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-000014035293",
+                "draftVersion": {
+                  "name": "nb_property_assessment_map_old"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"The Property Assessment Map is a geospatial representation of property assessments in New Brunswick, typically provided in a shape file format. It includes parcel information such as property boundaries, area, and coordinates (longitude and latitude). \"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan",
+                            "description": "Refers to the New Brunswick property account number"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "shape_leng",
+                            "description": "Property perimeter length"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "shape_area",
+                            "description": "Property area"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "longitude",
+                            "description": "Centroid longitude"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "latitude",
+                            "description": "Centroid latitude"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001403529b",
+                "draftVersion": {
+                  "name": "nb_tombstone_init"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_tombstone contains data files used in New Brunswick's property assessment system. It serves as a complete replacement file that updates the assess master table with property information, uniquely identified by the Property Account Number (PAN-NCB). The file includes essential details such as property descriptions, assessment values, and tax levies, which are crucial for maintaining accurate property records and assessments in the province.\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "loc_emp",
+                            "description": "Stores the loc."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "tacd_cdaf",
+                            "description": "Contains the municipality code, which is utilized to look up the corresponding municipality description from the TA file."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "desc",
+                            "description": "The description of a property"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstyr_anneval",
+                            "description": "Stores the Assessment year"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstval_valeval",
+                            "description": "Stores the assessed value of a property."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "taxlevy_prefis",
+                            "description": "Stores the the tax levy amount associated with a property assessment."
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-0000140352bf",
+                "draftVersion": {
+                  "name": "nb_property_assessment_map_append_log"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"The Property Assessment Map is a geospatial representation of property assessments in New Brunswick, typically provided in a shape file format. It includes parcel information such as property boundaries, area, and coordinates (longitude and latitude). \"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan",
+                            "description": "Refers to the New Brunswick property account number"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "shape_leng",
+                            "description": "Property perimeter length"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "shape_area",
+                            "description": "Property area"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "longitude",
+                            "description": "Centroid longitude"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "latitude",
+                            "description": "Centroid latitude"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation_timestamp",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-0000140352c9",
+                "draftVersion": {
+                  "name": "nb_ta"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_ta is part of the New Brunswick's property assessment. It includes fields that map to the assess master table, such as municipality codes and the corresponding municipality name.\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "tacd",
+                            "description": "Refers to the New Brunswick municipality code"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "tades_descaf",
+                            "description": "Refers to the Municipality name (for the most part)"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-0000140352ce",
+                "draftVersion": {
+                  "name": "nb_ta_old"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_ta is part of the New Brunswick's property assessment. It includes fields that map to the assess master table, such as municipality codes and the corresponding municipality name.\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "tacd",
+                            "description": "Refers to the New Brunswick municipality code"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "tades_descaf",
+                            "description": "Refers to the Municipality name (for the most part)"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-0000140352d3",
+                "draftVersion": {
+                  "name": "nb_property_assessment_map_init"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"The Property Assessment Map is a geospatial representation of property assessments in New Brunswick, typically provided in a shape file format. It includes parcel information such as property boundaries, area, and coordinates (longitude and latitude). \"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "wkt",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan",
+                            "description": "Refers to the New Brunswick property account number"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_int",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "location",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "description",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "ta_code",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "ta_description",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "assess_year",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "assess_val",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "trans_date",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "sale_val",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "tax_levy",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "tax_levy_p",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "shape_leng",
+                            "description": "Property perimeter length"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "shape_area",
+                            "description": "Property area"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-0000140352e5",
+                "draftVersion": {
+                  "name": "nb_ta_ext"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_ta is part of the New Brunswick's property assessment. It includes fields that map to the assess master table, such as municipality codes and the corresponding municipality name.\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "col",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-0000140352f7",
+                "draftVersion": {
+                  "name": "nb_sales_append_log"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_sales contains sales information for properties in New Brunswick. It includes details such as sale prices and dates, which are essential for updating assessment records \"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "trandt_dttran",
+                            "description": "Transaction date"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "sales_value_prix_de_vente",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation_timestamp",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-000014035306",
+                "draftVersion": {
+                  "name": "nb_pidpan_snapshot"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_pidpan maps parcel information from open sources to a master table in a data lake. It includes columns such as PID-NID (Property Identifier) and PAN-NCB (Property Account Number), which uniquely identify properties in New Brunswick. \"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pid_nid",
+                            "description": "Refers to the parcel identifier"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "active",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001403530c",
+                "draftVersion": {
+                  "name": "nb_sales_init"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_sales contains sales information for properties in New Brunswick. It includes details such as sale prices and dates, which are essential for updating assessment records \"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "trandt_dttran",
+                            "description": "Transaction date"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "sales_value_prix_de_vente",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-000014035358",
+                "draftVersion": {
+                  "name": "nb_tombstone_ext"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_tombstone contains data files used in New Brunswick's property assessment system. It serves as a complete replacement file that updates the assess master table with property information, uniquely identified by the Property Account Number (PAN-NCB). The file includes essential details such as property descriptions, assessment values, and tax levies, which are crucial for maintaining accurate property records and assessments in the province.\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "col",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001403535c",
+                "draftVersion": {
+                  "name": "nb_sales_old"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_sales contains sales information for properties in New Brunswick. It includes details such as sale prices and dates, which are essential for updating assessment records \"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "trandt_dttran",
+                            "description": "Transaction date"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "sales_value_prix_de_vente",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-000014035362",
+                "draftVersion": {
+                  "name": "nb_ta_append_log_old"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_ta is part of the New Brunswick's property assessment. It includes fields that map to the assess master table, such as municipality codes and the corresponding municipality name.\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "tacd",
+                            "description": "Refers to the New Brunswick municipality code"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "tades_descaf",
+                            "description": "Refers to the Municipality name (for the most part)"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "operation_timestamp",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-000014035369",
+                "draftVersion": {
+                  "name": "nb_tombstone_snapshot"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_tombstone contains data files used in New Brunswick's property assessment system. It serves as a complete replacement file that updates the assess master table with property information, uniquely identified by the Property Account Number (PAN-NCB). The file includes essential details such as property descriptions, assessment values, and tax levies, which are crucial for maintaining accurate property records and assessments in the province.\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "loc_emp",
+                            "description": "Stores the loc."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "tacd_cdaf",
+                            "description": "Contains the municipality code, which is utilized to look up the corresponding municipality description from the TA file."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "desc",
+                            "description": "The description of a property"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstyr_anneval",
+                            "description": "Stores the Assessment year"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstval_valeval",
+                            "description": "Stores the assessed value of a property."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "taxlevy_prefis",
+                            "description": "Stores the the tax levy amount associated with a property assessment."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "active",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-000014035374",
+                "draftVersion": {
+                  "name": "nb_tombstone"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_tombstone contains data files used in New Brunswick's property assessment system. It serves as a complete replacement file that updates the assess master table with property information, uniquely identified by the Property Account Number (PAN-NCB). The file includes essential details such as property descriptions, assessment values, and tax levies, which are crucial for maintaining accurate property records and assessments in the province.\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "loc_emp",
+                            "description": "Stores the loc."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "tacd_cdaf",
+                            "description": "Contains the municipality code, which is utilized to look up the corresponding municipality description from the TA file."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "desc",
+                            "description": "The description of a property"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstyr_anneval",
+                            "description": "Stores the Assessment year"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "asstval_valeval",
+                            "description": "Stores the assessed value of a property."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "taxlevy_prefis",
+                            "description": "Stores the the tax levy amount associated with a property assessment."
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001403537e",
+                "draftVersion": {
+                  "name": "nb_pidpan_old"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_pidpan maps parcel information from open sources to a master table in a data lake. It includes columns such as PID-NID (Property Identifier) and PAN-NCB (Property Account Number), which uniquely identify properties in New Brunswick. \"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pid_nid",
+                            "description": "Refers to the parcel identifier"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-000014035383",
+                "draftVersion": {
+                  "name": "nb_sales_snapshot"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_sales contains sales information for properties in New Brunswick. It includes details such as sale prices and dates, which are essential for updating assessment records \"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "trandt_dttran",
+                            "description": "Transaction date"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "sales_value_prix_de_vente",
+                            "description": null
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "active",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001403538a",
+                "draftVersion": {
+                  "name": "nb_ta_init"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_ta is part of the New Brunswick's property assessment. It includes fields that map to the assess master table, such as municipality codes and the corresponding municipality name.\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "tacd",
+                            "description": "Refers to the New Brunswick municipality code"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "tades_descaf",
+                            "description": "Refers to the Municipality name (for the most part)"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-00001403539c",
+                "draftVersion": {
+                  "name": "nb_sales"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"nb_sales contains sales information for properties in New Brunswick. It includes details such as sale prices and dates, which are essential for updating assessment records \"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan_ncb",
+                            "description": "Refers to the Property Account Number used as a unique identifier for properties in the province of New Brunswick."
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "trandt_dttran",
+                            "description": "Transaction date"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "sales_value_prix_de_vente",
+                            "description": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "node": {
+                "gid": "76639008-0000-7000-0000-0000140353a2",
+                "draftVersion": {
+                  "name": "nb_property_assessment_map"
+                },
+                "publishedVersion": {
+                  "description": "[{\"type\":\"paragraph\",\"children\":[{\"text\":\"The Property Assessment Map is a geospatial representation of property assessments in New Brunswick, typically provided in a shape file format. It includes parcel information such as property boundaries, area, and coordinates (longitude and latitude). \"}]}]",
+                  "attributes": {
+                    "edges": [
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "pan",
+                            "description": "Refers to the New Brunswick property account number"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "shape_leng",
+                            "description": "Property perimeter length"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "shape_area",
+                            "description": "Property area"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "latitude",
+                            "description": "Centroid latitude"
+                          }
+                        }
+                      },
+                      {
+                        "node": {
+                          "draftVersion": {
+                            "name": "longitude",
+                            "description": "Centroid longitude"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "extensions": {
+    "__$r": "C>1OA7_ez4}xxJU79t|t1iuZmDn!4vOFudINK}0%fJ6ak'kpkT7~>f!tc$Dqg`GG[W8P?ayi8|'_g,,ah%Z*@g]6F\"va3>1ti\"g^tgQ,d0*O)6>e=oyiUfT0g\\~IHrP{%RSn<X66D{RBeF<,I0$CCA7~2`4U7?4j!D+..`EQR5}\\4t*c_J((Vj]HyZzf]apD-db._/\""
+  }
+}
