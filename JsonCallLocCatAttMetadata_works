@@ -1,138 +1,179 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <purity-config version="14.5.1.231204-6829-cc8f270d">
-	<references/>
-	<component-mappings>
-		<propertyMappings/>
-	</component-mappings>
+  <references/>
+  <component-mappings>
+    <propertyMappings/>
+  </component-mappings>
 
-	<!-- ───────── 1. Generate one dummy record ───────── -->
-	<step mode="NORMAL"
-	      className="com.ataccama.dqc.tasks.generator.RandomRecordGenerator"
-	      disabled="false"
-	      id="Random Record Generator">
-		<properties recordCount="1">
-			<columns>
-				<iColumnGenerator name="id"
-				                  from="1"
-				                  type="INTEGER"
-				                  class="com.ataccama.dqc.tasks.generator.generators.ColumnGeneratorSequenceId"/>
-			</columns>
-		</properties>
-		<visual-constraints layout="vertical" bounds="160,48,-1,-1"/>
-	</step>
+  <!-- 1) Read list of location GIDs -->
+  <step id="LocationInput" mode="NORMAL"
+        className="com.ataccama.dqc.tasks.io.text.read.TextFileReader">
+    <properties fileName="./location_gids.csv"
+                fieldSeparator=";"
+                numberOfLinesInHeader="1"
+                encoding="UTF-8"
+                lineSeparator="\n">
+      <columns>
+        <textReaderColumn name="src_locationGid" type="STRING"/>
+      </columns>
+    </properties>
+  </step>
 
-	<!-- ───────── 2. Add the hard‑coded GID column ───────── -->
-	<step mode="NORMAL"
-	      className="com.ataccama.dqc.tasks.flow.AlterFormat"
-	      disabled="false"
-	      id="Add GID Column">
-		<properties>
-			<addedColumns>
-				<addedColumn name="src_locationGid"
-				             type="STRING"
-				             expression="&quot;76639008-0000-7000-0000-00001402c8d4&quot;"/>
-			</addedColumns>
-			<removedColumns/>
-		</properties>
-		<visual-constraints layout="vertical" bounds="160,120,-1,-1"/>
-	</step>
-	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection">
-		<source step="Random Record Generator" endpoint="out"/>
-		<target step="Add GID Column"          endpoint="in"/>
-	</connection>
+  <!-- 2) GraphQL call + JSON parsing -->
+  <step id="JsonCall" mode="NORMAL"
+        className="com.ataccama.dqc.tasks.io.json.call.JsonCall">
+    <properties method="POST"
+                url="https://teranet.prod.ataccama.online/graphql"
+                timeoutMs="30000"
+                templateBeginMark="#"
+                templateEndMark="#"
+                requestDebugFile="debug_request.log"
+                responseDebugFile="debug_response.log">
+      <headers>
+        <header name="Content-Type" value="application/json"/>
+        <header name="Authorization"
+                value="Basic YWRtaW46TGFlZ2V2YWVHYWp1RDlpZXF1ZWljaG9vRG9uaWVwYTA="/>
+      </headers>
+      <inputTemplate>{
+        &quot;query&quot;:
+        &quot;query GetLocationCatalogItems($locationGid:GID!){location(gid:$locationGid){draftVersion{name catalogItems{edges{node{gid draftVersion{name} publishedVersion{description attributes{edges{node{draftVersion{name description}}}}}}}}}}}&quot;,
+        &quot;variables&quot;:{&quot;locationGid&quot;:&quot;#src_locationGid#&quot;}
+      }</inputTemplate>
 
-	<!-- ───────── 3. Json Call to GraphQL ───────── -->
-	<step mode="NORMAL"
-	      className="com.ataccama.dqc.tasks.io.json.call.JsonCall"
-	      disabled="false"
-	      id="GraphQL Json Call">
-		<properties method="POST"
-		            timeoutMs="30000"
-		            url="https://teranet.prod.ataccama.online/graphql"
-		            templateBeginMark="#"
-		            templateEndMark="#"
-		            parseErrorResponse="true"
-		            requestDebugFile="debug_log_request"
-		            responseDebugFile="debug_log_response">
-			<headers>
-				<header name="Content-Type"  value="application/json"/>
-				<header name="Authorization"
-				        value="Basic YWRtaW46TGFlZ2V2YWVHYWp1RDlpZXF1ZWljaG9vRG9uaWVwYTA="/>
-			</headers>
+      <reader>
+        <dataStreams>
 
-			<!-- Json body with the hard‑coded GID  -->
-			<inputTemplate>{
-				&quot;query&quot;:
-				&quot;query GetLocationCatalogItems($locationGid:GID!){location(gid:$locationGid){draftVersion{name catalogItems{edges{node{gid draftVersion{name} publishedVersion{description attributes{edges{node{draftVersion{name description}}}}}}}}}}}&quot;,
-				&quot;variables&quot;:{&quot;locationGid&quot;:&quot;#src_locationGid#&quot;}
-			}</inputTemplate>
+          <!-- Level 1: location object -->
+          <rootJsonStreamConfig path="$.data.location"
+                                name="location"
+                                minOneRecord="true"
+                                maxOneRecord="false">
+            <attributes>
+              <attribute path="draftVersion.name"
+                         name="location_name"
+                         type="STRING"/>
+            </attributes>
+            <shadowColumns>
+              <shadowColumnDef name="src_locationGid"
+                               type="STRING"
+                               defaultExpression="in.src_locationGid"/>
+            </shadowColumns>
 
-			<reader>
-				<dataStreams>
-					<!-- one record (the location object) -->
-					<rootJsonStreamConfig name="location"
-					                      path="$.data.location"
-					                      minOneRecord="true"
-					                      maxOneRecord="false">
-						<attributes>
-							<attribute name="location_name"
-							           path="draftVersion.name"
-							           type="STRING"/>
-							<!-- raw JSON of the catalog items -->
-							<attribute name="items_json"
-							           path="catalogItems"
-							           type="STRING"/>
-						</attributes>
-						<shadowColumns>
-							<shadowColumnDef name="src_locationGid"
-							                 type="STRING"
-							                 defaultExpression="in.src_locationGid"/>
-						</shadowColumns>
-					</rootJsonStreamConfig>
-				</dataStreams>
-			</reader>
-		</properties>
-		<visual-constraints layout="vertical" bounds="160,208,-1,-1"/>
-	</step>
-	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection">
-		<source step="Add GID Column" endpoint="out"/>
-		<target step="GraphQL Json Call" endpoint="in"/>
-	</connection>
+            <dataStreams>
 
-	<!-- ───────── 4. Output writers ───────── -->
-	<step mode="NORMAL"
-	      className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter"
-	      disabled="false"
-	      id="out">
-		<properties fileName="graphql_out.csv"
-		            fieldSeparator=";"
-		            writeHeader="true"
-		            writeAllColumns="true"
-		            encoding="UTF-8"
-		            lineSeparator="\r\n"/>
-		<visual-constraints layout="vertical" bounds="96,320,-1,-1"/>
-	</step>
+              <!-- Level 2: catalog items -->
+              <childJsonStreamConfig path="draftVersion.catalogItems.edges"
+                                    name="items"
+                                    minOneRecord="false"
+                                    maxOneRecord="false">
+                <attributes>
+                  <attribute path="node.gid"
+                             name="item_gid"
+                             type="STRING"/>
+                  <attribute path="node.draftVersion.name"
+                             name="item_name"
+                             type="STRING"/>
+                  <attribute path="node.publishedVersion.description"
+                             name="item_description"
+                             type="STRING"/>
+                </attributes>
+                <shadowColumns>
+                  <shadowColumnDef name="location_name"
+                                   type="STRING"
+                                   defaultExpression="in.location_name"/>
+                </shadowColumns>
 
-	<step mode="NORMAL"
-	      className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter"
-	      disabled="false"
-	      id="location out">
-		<properties fileName="location_out.csv"
-		            fieldSeparator=";"
-		            writeHeader="true"
-		            writeAllColumns="true"
-		            encoding="UTF-8"
-		            lineSeparator="\r\n"/>
-		<visual-constraints layout="vertical" bounds="288,320,-1,-1"/>
-	</step>
+                <dataStreams>
 
-	<!-- connections from Json Call -->
-	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection">
-		<source step="GraphQL Json Call" endpoint="out"/>
-		<target step="out"              endpoint="in"/>
-	</connection>
-	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection">
-		<source step="GraphQL Json Call" endpoint="location"/>
-		<target step="location out"      endpoint="in"/>
-	</connection>
+                  <!-- Level 3: attributes of each item -->
+                  <childJsonStreamConfig path="node.publishedVersion.attributes.edges"
+                                        name="attributes"
+                                        minOneRecord="false"
+                                        maxOneRecord="false">
+                    <attributes>
+                      <attribute path="node.draftVersion.name"
+                                 name="attribute_name"
+                                 type="STRING"/>
+                      <attribute path="node.draftVersion.description"
+                                 name="attribute_description"
+                                 type="STRING"/>
+                    </attributes>
+                    <shadowColumns>
+                      <shadowColumnDef name="src_locationGid"
+                                       type="STRING"
+                                       defaultExpression="in.src_locationGid"/>
+                      <shadowColumnDef name="location_name"
+                                       type="STRING"
+                                       defaultExpression="in.location_name"/>
+                      <shadowColumnDef name="item_gid"
+                                       type="STRING"
+                                       defaultExpression="in.item_gid"/>
+                      <shadowColumnDef name="item_name"
+                                       type="STRING"
+                                       defaultExpression="in.item_name"/>
+                    </shadowColumns>
+                  </childJsonStreamConfig>
+
+                </dataStreams>
+              </childJsonStreamConfig>
+
+            </dataStreams>
+          </rootJsonStreamConfig>
+
+        </dataStreams>
+      </reader>
+    </properties>
+  </step>
+
+  <!-- 3) Write items_out.csv -->
+  <step id="ItemsOut" mode="NORMAL"
+        className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter">
+    <properties fileName="./items_out.csv"
+                fieldSeparator=";"
+                writeHeader="true"
+                writeAllColumns="true"
+                encoding="UTF-8"
+                lineSeparator="\r\n"/>
+  </step>
+
+  <!-- 4) Write attributes_out.csv -->
+  <step id="AttributesOut" mode="NORMAL"
+        className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter">
+    <properties fileName="./attributes_out.csv"
+                fieldSeparator=";"
+                writeHeader="true"
+                writeAllColumns="true"
+                encoding="UTF-8"
+                lineSeparator="\r\n"/>
+  </step>
+
+  <!-- 5) Pass-through for default 'out' endpoint -->
+  <step id="RawOut" mode="NORMAL"
+        className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter">
+    <properties fileName="./raw_out.csv"
+                fieldSeparator=";"
+                writeHeader="true"
+                writeAllColumns="true"
+                encoding="UTF-8"
+                lineSeparator="\n"/>
+  </step>
+
+  <!-- Connections -->
+  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection">
+    <source step="LocationInput" endpoint="out"/>
+    <target step="JsonCall"       endpoint="in"/>
+  </connection>
+  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection">
+    <source step="JsonCall" endpoint="items"/>
+    <target step="ItemsOut" endpoint="in"/>
+  </connection>
+  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection">
+    <source step="JsonCall" endpoint="attributes"/>
+    <target step="AttributesOut" endpoint="in"/>
+  </connection>
+  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection">
+    <source step="JsonCall" endpoint="out"/>
+    <target step="RawOut"      endpoint="in"/>
+  </connection>
+
 </purity-config>
