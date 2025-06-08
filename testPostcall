@@ -1,0 +1,12 @@
+# ---  set variables  ---
+$Url  = "https://YOUR_REAL_PATH/graphql"          # paste the full URL here
+$Auth = "Basic YWRtaW46MTIzNA=="                  # paste everything AFTER 'Authorization: '
+$Body = Get-Content -Raw .\body.json
+
+# ---  fire the request  ---
+Invoke-RestMethod `
+  -Method POST `
+  -Uri $Url `
+  -Headers @{ "Authorization" = $Auth; "Content-Type" = "application/json" } `
+  -Body   $Body `
+  -OutFile response.json
