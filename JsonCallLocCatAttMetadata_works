@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<purity-config version="14.5.1.231204-6829-cc8f270d">
+	<references/>
+	<component-mappings>
+		<propertyMappings/>
+	</component-mappings>
+
+	<!-- ───────── 1. Generate one dummy record ───────── -->
+	<step mode="NORMAL"
+	      className="com.ataccama.dqc.tasks.generator.RandomRecordGenerator"
+	      disabled="false"
+	      id="Random Record Generator">
+		<properties recordCount="1">
+			<columns>
+				<iColumnGenerator name="id"
+				                  from="1"
+				                  type="INTEGER"
+				                  class="com.ataccama.dqc.tasks.generator.generators.ColumnGeneratorSequenceId"/>
+			</columns>
+		</properties>
+		<visual-constraints layout="vertical" bounds="160,48,-1,-1"/>
+	</step>
+
+	<!-- ───────── 2. Add the hard‑coded GID column ───────── -->
+	<step mode="NORMAL"
+	      className="com.ataccama.dqc.tasks.flow.AlterFormat"
+	      disabled="false"
+	      id="Add GID Column">
+		<properties>
+			<addedColumns>
+				<addedColumn name="src_locationGid"
+				             type="STRING"
+				             expression="&quot;76639008-0000-7000-0000-00001402c8d4&quot;"/>
+			</addedColumns>
+			<removedColumns/>
+		</properties>
+		<visual-constraints layout="vertical" bounds="160,120,-1,-1"/>
+	</step>
+	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection">
+		<source step="Random Record Generator" endpoint="out"/>
+		<target step="Add GID Column"          endpoint="in"/>
+	</connection>
+
+	<!-- ───────── 3. Json Call to GraphQL ───────── -->
+	<step mode="NORMAL"
+	      className="com.ataccama.dqc.tasks.io.json.call.JsonCall"
+	      disabled="false"
+	      id="GraphQL Json Call">
+		<properties method="POST"
+		            timeoutMs="30000"
+		            url="https://teranet.prod.ataccama.online/graphql"
+		            templateBeginMark="#"
+		            templateEndMark="#"
+		            parseErrorResponse="true"
+		            requestDebugFile="debug_log_request"
+		            responseDebugFile="debug_log_response">
+			<headers>
+				<header name="Content-Type"  value="application/json"/>
+				<header name="Authorization"
+				        value="Basic YWRtaW46TGFlZ2V2YWVHYWp1RDlpZXF1ZWljaG9vRG9uaWVwYTA="/>
+			</headers>
+
+			<!-- Json body with the hard‑coded GID  -->
+			<inputTemplate>{
+				&quot;query&quot;:
+				&quot;query GetLocationCatalogItems($locationGid:GID!){location(gid:$locationGid){draftVersion{name catalogItems{edges{node{gid draftVersion{name} publishedVersion{description attributes{edges{node{draftVersion{name description}}}}}}}}}}}&quot;,
+				&quot;variables&quot;:{&quot;locationGid&quot;:&quot;#src_locationGid#&quot;}
+			}</inputTemplate>
+
+			<reader>
+				<dataStreams>
+					<!-- one record (the location object) -->
+					<rootJsonStreamConfig name="location"
+					                      path="$.data.location"
+					                      minOneRecord="true"
+					                      maxOneRecord="false">
+						<attributes>
+							<attribute name="location_name"
+							           path="draftVersion.name"
+							           type="STRING"/>
+							<!-- raw JSON of the catalog items -->
+							<attribute name="items_json"
+							           path="catalogItems"
+							           type="STRING"/>
+						</attributes>
+						<shadowColumns>
+							<shadowColumnDef name="src_locationGid"
+							                 type="STRING"
+							                 defaultExpression="in.src_locationGid"/>
+						</shadowColumns>
+					</rootJsonStreamConfig>
+				</dataStreams>
+			</reader>
+		</properties>
+		<visual-constraints layout="vertical" bounds="160,208,-1,-1"/>
+	</step>
+	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection">
+		<source step="Add GID Column" endpoint="out"/>
+		<target step="GraphQL Json Call" endpoint="in"/>
+	</connection>
+
+	<!-- ───────── 4. Output writers ───────── -->
+	<step mode="NORMAL"
+	      className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter"
+	      disabled="false"
+	      id="out">
+		<properties fileName="graphql_out.csv"
+		            fieldSeparator=";"
+		            writeHeader="true"
+		            writeAllColumns="true"
+		            encoding="UTF-8"
+		            lineSeparator="\r\n"/>
+		<visual-constraints layout="vertical" bounds="96,320,-1,-1"/>
+	</step>
+
+	<step mode="NORMAL"
+	      className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter"
+	      disabled="false"
+	      id="location out">
+		<properties fileName="location_out.csv"
+		            fieldSeparator=";"
+		            writeHeader="true"
+		            writeAllColumns="true"
+		            encoding="UTF-8"
+		            lineSeparator="\r\n"/>
+		<visual-constraints layout="vertical" bounds="288,320,-1,-1"/>
+	</step>
+
+	<!-- connections from Json Call -->
+	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection">
+		<source step="GraphQL Json Call" endpoint="out"/>
+		<target step="out"              endpoint="in"/>
+	</connection>
+	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection">
+		<source step="GraphQL Json Call" endpoint="location"/>
+		<target step="location out"      endpoint="in"/>
+	</connection>
+</purity-config>
