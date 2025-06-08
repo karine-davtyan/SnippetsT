@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<purity-config version="14.5.1.231113-257-b7b25153">
-  <references/>
-  <component-mappings>
-    <propertyMappings/>
-  </component-mappings>
-
+<purity-config version="14.5.1.231204-6829-cc8f270d">
+  
   <!-- 1) INPUT: read one or more location GIDs -->
-  <step id="LocationInput" className="com.ataccama.dqc.tasks.io.text.read.TextFileReader" mode="NORMAL" disabled="false">
+  <step id="LocationInput"
+        className="com.ataccama.dqc.tasks.io.text.read.TextFileReader"
+        mode="NORMAL" disabled="false">
     <properties fileName="data/in/location_gids.csv"
                 fieldSeparator=";"
                 stringQualifier="&quot;"
@@ -25,7 +23,9 @@
                              dateFormatLocale="en_US"/>
       <errorHandlingStrategy>
         <errorInstructions>
-          <errorInstruction dataStrategy="STOP" errorType="PROCESSING_ERROR" putToLog="true" putToReject="false"/>
+          <errorInstruction dataStrategy="STOP"
+                            errorType="PROCESSING_ERROR"
+                            putToLog="true" putToReject="false"/>
         </errorInstructions>
       </errorHandlingStrategy>
       <shadowColumns/>
@@ -34,28 +34,29 @@
   </step>
 
   <!-- 2) JSON CALL: execute GraphQL query per input row -->
-  <step id="Json Call" className="com.ataccama.dqc.tasks.io.json.call.JsonCall" mode="NORMAL" disabled="false">
+  <step id="Json Call"
+        className="com.ataccama.dqc.tasks.io.json.call.JsonCall"
+        mode="NORMAL" disabled="false">
     <properties method="POST"
-                url="https://your.graphql.server/graphql"
+                url="https://teranet.prod.ataccama.online/graphql"
                 encoding="UTF-8"
                 templateBeginMark="#"
                 templateEndMark="#">
       <headers>
-        <header name="Content-Type" value="application/json"/>
-        <header name="Authorization"  value="Bearer YOUR_TOKEN"/>
+        <header name="Content-Type"  value="application/json"/>
+        <header name="Authorization" value="Bearer YWRtaW46TGFlZ2V2YWVHYWp1RDlpZXF1ZWljaG9vRG9uaWVwYTA="/>
       </headers>
-
-      <!-- inject #src_locationGid# into your GraphQL variable -->
       <inputTemplate>{
         "query":"query GetLocationCatalogItems($locationGid:GID!){location(gid:$locationGid){draftVersion{name catalogItems{edges{node{gid draftVersion{name} publishedVersion{description attributes{edges{node{draftVersion{name description}}}}}}}}}}}",
         "variables":{"locationGid":"#src_locationGid#"}
       }</inputTemplate>
-
       <reader>
         <dataStreams>
           <!-- flatten each catalogItems.edges[*] -->
           <rootJsonStreamConfig name="response"
-                                path="$.data.location.draftVersion.catalogItems.edges">
+                                path="$.data.location.draftVersion.catalogItems.edges"
+                                minOneRecord="true"
+                                maxOneRecord="false">
             <attributes>
               <attribute path="node.gid"                           name="item_gid"   type="STRING"/>
               <attribute path="node.draftVersion.name"            name="item_name"  type="STRING"/>
@@ -67,10 +68,12 @@
                                type="STRING"/>
             </shadowColumns>
             <dataStreams/>
+            <scorer>
+              <scoringEntries/>
+            </scorer>
           </rootJsonStreamConfig>
         </dataStreams>
       </reader>
-
       <scorer>
         <scoringEntries>
           <scoringEntry key="WLA_TARGET_UNREACHABLE" explain="true" score="0" explainAs="TARGET_UNREACHABLE"/>
@@ -91,13 +94,17 @@
   </connection>
 
   <!-- 3) OUTPUT: write flattened catalog items to CSV -->
-  <step id="ResponseOutput" className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" mode="NORMAL" disabled="false">
-    <properties fileName="data/out/catalog_items.csv"
+  <step id="ResponseOutput"
+        className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter"
+        mode="NORMAL" disabled="false">
+    <properties writeHeader="true"
+                fileName="data/out/catalog_items.csv"
                 fieldSeparator=";"
                 stringQualifier="&quot;"
-                writeHeader="true"
+                writeAllColumns="true"
                 encoding="UTF-8"
-                lineSeparator="\n">
+                lineSeparator="\n"
+                compression="NONE">
       <columns/>
       <dataFormatParameters falseValue="false"
                              trueValue="true"
@@ -118,3 +125,4 @@
   </connection>
 
 </purity-config>
+
