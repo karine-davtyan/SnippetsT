@@ -1,16 +1,14 @@
-2025-06-08 14:20:10 [INFO]    com.ataccama.lib.securityutil.javaencryption.DefaultEncryptionEngine messageId=createDefaultKeyProvider reason=the 'properties.encryption.keystore' property not specified
-2025-06-08 14:20:11 [INFO]    com.ataccama.lib.securityutil.javaencryption.DefaultEncryptionEngine messageId=createDefaultKeyProvider reason=the 'internal.encryption.keystore' property not specified
-08.06.2025 14:20:11 [INFO]     Switching to logging setup from C:\Users\kdavty01\AppData\Local\Temp\loggingConfig11278383873501327398.tmp
-08.06.2025 14:20:11 [INFO]     Using following licenses:
-08.06.2025 14:20:11 [INFO]       C:\Users\kdavty01\Downloads\ataccama-one-desktop-14.5.1.231204-9325-35ed3d49-windows\runtime\license_keys\license_teranet_USER_v14_subscription_2025-09-28.plf
-08.06.2025 14:20:11 [INFO]     ============================================================
-08.06.2025 14:20:11 [INFO]     This is a subscription USER license for developers' laptops for "Teranet". It expires on 2025-09-28.
-08.06.2025 14:20:11 [INFO]     ============================================================
-08.06.2025 14:20:12 [INFO]     Using Ataccama DQC configuration file C:\Users\kdavty01\Downloads\Workflow Workspace11\OpenCommercial\json_try3.plan
-08.06.2025 14:20:12 [INFO]     Using runtime configuration file C:\Users\kdavty01\AppData\Local\Temp\runtimeCfg13852454367088612104.tmp
-08.06.2025 14:20:12 [FATAL]    Invalid JSON path: $.data.location.catalogItems.edges[*] [GraphQL (Json Call, offending property path=/reader/dataStreams[0]/path)]
-08.06.2025 14:20:12 [FATAL]    Shadow columns must not have duplicate name 'location_name'. [GraphQL (Json Call, offending property path=/reader/dataStreams[0]/shadowColumns[1]/name)]
-08.06.2025 14:20:12 [FATAL]    Shadow columns must not have duplicate name 'item_gid'. [GraphQL (Json Call, offending property path=/reader/dataStreams[0]/shadowColumns[2]/name)]
-08.06.2025 14:20:12 [FATAL]    Shadow columns must not have duplicate name 'item_name'. [GraphQL (Json Call, offending property path=/reader/dataStreams[0]/shadowColumns[3]/name)]
-08.06.2025 14:20:12 [FATAL]    Invalid JSON path: node.publishedVersion.attributes.edges[*] [GraphQL (Json Call, offending property path=/reader/dataStreams[0]/dataStreams[0]/path)]
-08.06.2025 14:20:12 [FATAL]    Unable to use the config file provided, exiting.
+2025-06-08 14:28:24 [INFO]    com.ataccama.lib.securityutil.javaencryption.DefaultEncryptionEngine messageId=createDefaultKeyProvider reason=the 'properties.encryption.keystore' property not specified
+2025-06-08 14:28:24 [INFO]    com.ataccama.lib.securityutil.javaencryption.DefaultEncryptionEngine messageId=createDefaultKeyProvider reason=the 'internal.encryption.keystore' property not specified
+08.06.2025 14:28:24 [INFO]     Switching to logging setup from C:\Users\kdavty01\AppData\Local\Temp\loggingConfig511420230743287633.tmp
+08.06.2025 14:28:25 [INFO]     Using following licenses:
+08.06.2025 14:28:25 [INFO]       C:\Users\kdavty01\Downloads\ataccama-one-desktop-14.5.1.231204-9325-35ed3d49-windows\runtime\license_keys\license_teranet_USER_v14_subscription_2025-09-28.plf
+08.06.2025 14:28:25 [INFO]     ============================================================
+08.06.2025 14:28:25 [INFO]     This is a subscription USER license for developers' laptops for "Teranet". It expires on 2025-09-28.
+08.06.2025 14:28:25 [INFO]     ============================================================
+08.06.2025 14:28:25 [INFO]     Using Ataccama DQC configuration file C:\Users\kdavty01\Downloads\Workflow Workspace11\OpenCommercial\json_try3.plan
+08.06.2025 14:28:25 [INFO]     Using runtime configuration file C:\Users\kdavty01\AppData\Local\Temp\runtimeCfg1499645511399118802.tmp
+08.06.2025 14:28:26 [FATAL]    Unknown column 'in.sc_location_name' at 1-19 in 'in.sc_location_name'. [GraphQL (Json Call, offending property path=/reader/dataStreams[0]/dataStreams[0]/shadowColumns[1]/defaultExpression)]
+08.06.2025 14:28:26 [FATAL]    Unknown column 'in.sc_item_gid' at 1-14 in 'in.sc_item_gid'. [GraphQL (Json Call, offending property path=/reader/dataStreams[0]/dataStreams[0]/shadowColumns[2]/defaultExpression)]
+08.06.2025 14:28:26 [FATAL]    Unknown column 'in.sc_item_name' at 1-15 in 'in.sc_item_name'. [GraphQL (Json Call, offending property path=/reader/dataStreams[0]/dataStreams[0]/shadowColumns[3]/defaultExpression)]
+08.06.2025 14:28:26 [FATAL]    Unable to use the config file provided, exiting.
