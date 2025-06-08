@@ -1,143 +1,83 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <purity-config version="14.5.1.231204-6829-cc8f270d">
-	<references/>
-	<component-mappings>
-		<propertyMappings/>
-	</component-mappings>
 
-<!-- (AttributesOutput) --><step mode="NORMAL" className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" disabled="false" id="AttributesOutput">
-		<properties writeHeader="true" fileName="catalog_attributes.csv" fieldSeparator=";" generateMetadata="true" writeAllColumns="true" compression="NONE" encoding="UTF-8" lineSeparator="\n" useStringQualifierOnAllColumns="false">
-			<columns/>
-			<dataFormatParameters falseValue="false" dateTimeFormat="yyyy-MM-dd HH:mm:ss" decimalSeparator="." dayFormat="yyyy-MM-dd" trueValue="true" dateFormatLocale="en_US" thousandsSeparator=""/>
-		</properties>
-		<visual-constraints layout="vertical" bounds="130,202,24,24"/>
-	</step>
+  <step id="LocationInput" className="com.ataccama.dqc.tasks.io.text.read.TextFileReader" mode="NORMAL" disabled="false">
+    <properties fileName="./location_gids.csv" fieldSeparator=";" encoding="UTF-8" lineSeparator="\n" numberOfLinesInHeader="1">
+      <columns>
+        <textReaderColumn name="src_locationGid" type="STRING" ignore="false"/>
+      </columns>
+    </properties>
+  </step>
 
-
-
-<!-- (ItemsOutput) --><step mode="NORMAL" className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" disabled="false" id="ItemsOutput">
-		<properties writeHeader="true" fileName="catalog_items.csv" fieldSeparator=";" generateMetadata="true" writeAllColumns="true" compression="NONE" encoding="UTF-8" lineSeparator="\n" useStringQualifierOnAllColumns="false">
-			<columns/>
-			<dataFormatParameters falseValue="false" dateTimeFormat="yyyy-MM-dd HH:mm:ss" decimalSeparator="." dayFormat="yyyy-MM-dd" trueValue="true" dateFormatLocale="en_US" thousandsSeparator=""/>
-		</properties>
-		<visual-constraints layout="vertical" bounds="10,202,24,24"/>
-	</step>
-
-
-
-<!-- (JsonCall) --><step mode="NORMAL" className="com.ataccama.dqc.tasks.io.json.call.JsonCall" disabled="false" id="JsonCall">
-		<properties templateEndMark="#" method="POST" timeoutMs="1000" urlBeginMark="%" urlEndMark="%" parseErrorResponse="false" templateBeginMark="#" encoding="UTF-8" url="https://teranet.prod.ataccama.online/graphql" delayBetweenRequestsMs="0">
-			<dataFormatParameters falseValue="false" dateTimeFormat="yyyy-MM-dd HH:mm:ss" decimalSeparator="." dayFormat="yyyy-MM-dd" trueValue="true" dateFormatLocale="en_US" thousandsSeparator=""/>
-			<headers>
-				<header name="Content-Type" value="application/json"/>
-				<header name="Authorization" value="Bearer YWRtaW46TGFlZ2V2YWVHYWp1RDlpZXF1ZWljaG9vRG9uaWVwYTA="/>
-			</headers>
-			<inputTemplate>{
-        &quot;query&quot;:&quot;query GetLocationCatalogItems($locationGid:GID!){location(gid:$locationGid){draftVersion{name catalogItems{edges{node{gid draftVersion{name} publishedVersion{description attributes{edges{node{draftVersion{name description}}}}}}}}}}}&quot;,
-        &quot;variables&quot;:{&quot;locationGid&quot;:&quot;#src_locationGid#&quot;}
+  <step id="JsonCall" className="com.ataccama.dqc.tasks.io.json.call.JsonCall" mode="NORMAL" disabled="false">
+    <properties method="POST" url="https://teranet.prod.ataccama.online/graphql" encoding="UTF-8" templateBeginMark="#" templateEndMark="#">
+      <headers>
+        <header name="Content-Type"  value="application/json"/>
+        <header name="Authorization" value="Bearer YWRtaW46TGFlZ2V2YWVHYWp1RDlpZXF1ZWljaG9vRG9uaWVwYTA="/>
+      </headers>
+      <inputTemplate>{
+        "query":"query GetLocationCatalogItems($locationGid:GID!){location(gid:$locationGid){draftVersion{name catalogItems{edges{node{gid draftVersion{name} publishedVersion{description attributes{edges{node{draftVersion{name description}}}}}}}}}}}",
+        "variables":{"locationGid":"#src_locationGid#"}
       }</inputTemplate>
-			<reader>
-				<dataFormatParameters falseValue="false" dateTimeFormat="yy-MM-dd HH:mm:ss" decimalSeparator="." dayFormat="yy-MM-dd" trueValue="true" dateFormatLocale="en_US" class="com.ataccama.dqc.tasks.io.text.read.TextReaderDataFormatParameters" thousandsSeparator=""/>
-				<dataStreams>
-					<rootJsonStreamConfig path="$.data.location.draftVersion.catalogItems.edges" name="Items" minOneRecord="true" maxOneRecord="false">
-						<attributes>
-							<attribute path="node.gid" name="item_gid" type="STRING"/>
-							<attribute path="node.draftVersion.name" name="item_name" type="STRING"/>
-							<attribute path="node.publishedVersion.description" name="item_desc" type="STRING"/>
-						</attributes>
-						<dataStreams>
-							<childJsonStreamConfig path="$.node.publishedVersion.attributes.edges" name="Attributes" minOneRecord="false" maxOneRecord="false">
-								<attributes>
-									<attribute path="node.draftVersion.name" name="attr_name" type="STRING"/>
-									<attribute path="node.draftVersion.description" name="attr_desc" type="STRING"/>
-								</attributes>
-								<dataStreams/>
-								<scorer>
-									<scoringEntries/>
-								</scorer>
-								<shadowColumns>
-									<shadowColumnDef defaultExpression="in.src_locationGid" name="src_locationGid" type="STRING"/>
-									<shadowColumnDef defaultExpression="in.item_gid" name="item_gid" type="STRING"/>
-									<shadowColumnDef defaultExpression="in.item_name" name="item_name" type="STRING"/>
-									<shadowColumnDef defaultExpression="in.item_desc" name="item_desc" type="STRING"/>
-								</shadowColumns>
-							</childJsonStreamConfig>
-						</dataStreams>
-						<scorer>
-							<scoringEntries/>
-						</scorer>
-						<shadowColumns>
-							<shadowColumnDef defaultExpression="in.src_locationGid" name="src_locationGid" type="STRING"/>
-						</shadowColumns>
-					</rootJsonStreamConfig>
-				</dataStreams>
-			</reader>
-			<scorer>
-				<scoringEntries/>
-			</scorer>
-		</properties>
-		<visual-constraints layout="vertical" bounds="130,106,24,24"/>
-	</step>
-	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
-		<source endpoint="Attributes" step="JsonCall"/>
-		<target endpoint="in" step="AttributesOutput"/>
-		<visual-constraints>
-			<bendpoints/>
-		</visual-constraints>
-	</connection>
-	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
-		<source endpoint="Items" step="JsonCall"/>
-		<target endpoint="in" step="ItemsOutput"/>
-		<visual-constraints>
-			<bendpoints/>
-		</visual-constraints>
-	</connection>
-	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
-		<source endpoint="out" step="JsonCall"/>
-		<target endpoint="in" step="OutPass"/>
-		<visual-constraints>
-			<bendpoints/>
-		</visual-constraints>
-	</connection>
+      <reader>
+        <dataStreams>
+          <rootJsonStreamConfig name="Items" path="$.data.location.draftVersion.catalogItems.edges">
+            <attributes>
+              <attribute path="node.gid"                           name="item_gid"  type="STRING"/>
+              <attribute path="node.draftVersion.name"            name="item_name" type="STRING"/>
+              <attribute path="node.publishedVersion.description" name="item_desc" type="STRING"/>
+            </attributes>
+            <shadowColumns>
+              <shadowColumnDef name="src_locationGid" defaultExpression="in.src_locationGid" type="STRING"/>
+            </shadowColumns>
+            <dataStreams>
+              <childJsonStreamConfig name="Attributes" path="$.node.publishedVersion.attributes.edges">
+                <attributes>
+                  <attribute path="node.draftVersion.name"        name="attr_name" type="STRING"/>
+                  <attribute path="node.draftVersion.description" name="attr_desc" type="STRING"/>
+                </attributes>
+                <shadowColumns>
+                  <shadowColumnDef name="src_locationGid" defaultExpression="in.src_locationGid" type="STRING"/>
+                </shadowColumns>
+                <dataStreams/>
+              </childJsonStreamConfig>
+            </dataStreams>
+          </rootJsonStreamConfig>
+        </dataStreams>
+      </reader>
+    </properties>
+  </step>
 
+  <step id="ItemsOutput" className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" mode="NORMAL" disabled="false">
+    <properties writeHeader="true" fileName="catalog_items.csv" fieldSeparator=";" writeAllColumns="true" encoding="UTF-8" lineSeparator="\n"/>
+  </step>
 
+  <step id="AttributesOutput" className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" mode="NORMAL" disabled="false">
+    <properties writeHeader="true" fileName="catalog_attributes.csv" fieldSeparator=";" writeAllColumns="true" encoding="UTF-8" lineSeparator="\n"/>
+  </step>
 
-<!-- (LocationInput) --><step mode="NORMAL" className="com.ataccama.dqc.tasks.io.text.read.TextFileReader" disabled="false" id="LocationInput">
-		<properties lineMaxReadLength="65536" fileName="./location_gids.csv" fieldSeparator=";" numberOfLinesInFooter="0" compression="NONE" encoding="UTF-8" lineSeparator="\n" numberOfLinesInHeader="1">
-			<columns>
-				<textReaderColumn name="src_locationGid" ignore="false" type="STRING"/>
-			</columns>
-			<dataFormatParameters falseValue="false" dateTimeFormat="yy-MM-dd HH:mm:ss" decimalSeparator="." dayFormat="yy-MM-dd" trueValue="true" dateFormatLocale="en_US" thousandsSeparator=""/>
-			<errorHandlingStrategy rejectFileName="rejected.txt">
-				<errorInstructions>
-					<errorInstruction dataStrategy="READ_POSSIBLE" errorType="EXTRA_DATA" putToLog="true" putToReject="false"/>
-					<errorInstruction dataStrategy="STOP" errorType="LONG_LINE" putToLog="true" putToReject="true"/>
-					<errorInstruction dataStrategy="STOP" errorType="PROCESSING_ERROR" putToLog="true" putToReject="false"/>
-					<errorInstruction dataStrategy="READ_POSSIBLE" errorType="INVALID_DATE" putToLog="true" putToReject="false"/>
-					<errorInstruction dataStrategy="READ_POSSIBLE" errorType="SHORT_LINE" putToLog="true" putToReject="true"/>
-					<errorInstruction dataStrategy="NULL_VALUE" errorType="UNPARSABLE_FIELD" putToLog="true" putToReject="false"/>
-				</errorInstructions>
-			</errorHandlingStrategy>
-			<shadowColumns/>
-		</properties>
-		<visual-constraints layout="vertical" bounds="130,10,24,24"/>
-	</step>
-	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
-		<source endpoint="out" step="LocationInput"/>
-		<target endpoint="in" step="JsonCall"/>
-		<visual-constraints>
-			<bendpoints/>
-		</visual-constraints>
-	</connection>
+  <step id="OutPass" className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" mode="NORMAL" disabled="false">
+    <properties writeHeader="false" fileName="out_passthrough.csv" fieldSeparator=";" writeAllColumns="true" encoding="UTF-8" lineSeparator="\n"/>
+  </step>
 
+  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
+    <source step="LocationInput" endpoint="out"/>
+    <target step="JsonCall"      endpoint="in"/>
+  </connection>
 
+  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
+    <source step="JsonCall" endpoint="Items"/>
+    <target step="ItemsOutput" endpoint="in"/>
+  </connection>
 
-<!-- (OutPass) --><step mode="NORMAL" className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" disabled="false" id="OutPass">
-		<properties writeHeader="false" fileName="out_passthrough.csv" fieldSeparator=";" generateMetadata="true" writeAllColumns="true" compression="NONE" encoding="UTF-8" lineSeparator="\n" useStringQualifierOnAllColumns="false">
-			<columns/>
-			<dataFormatParameters falseValue="false" dateTimeFormat="yyyy-MM-dd HH:mm:ss" decimalSeparator="." dayFormat="yyyy-MM-dd" trueValue="true" dateFormatLocale="en_US" thousandsSeparator=""/>
-		</properties>
-		<visual-constraints layout="vertical" bounds="250,202,24,24"/>
-	</step>
+  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
+    <source step="JsonCall" endpoint="Attributes"/>
+    <target step="AttributesOutput" endpoint="in"/>
+  </connection>
+
+  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
+    <source step="JsonCall" endpoint="out"/>
+    <target step="OutPass"  endpoint="in"/>
+  </connection>
 
 </purity-config>
