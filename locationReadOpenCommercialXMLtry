@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <purity-config version="14.5.1.231204-6829-cc8f270d">
 
-  <!-- 1) INPUT: your existing location_gids.csv -->
+  <!-- 1) INPUT ------------------------------------------------------------ -->
   <step id="LocationInput"
         className="com.ataccama.dqc.tasks.io.text.read.TextFileReader">
     <properties fileName="./location_gids.csv"
@@ -12,7 +12,6 @@
       <columns>
         <textReaderColumn name="src_locationGid" type="STRING"/>
       </columns>
-      <!-- (keep your other settings exactly as they were) -->
     </properties>
   </step>
 
@@ -22,18 +21,20 @@
   </connection>
 
 
-  <!-- 2) JSON CALL: your GraphQL query -->
+  <!-- 2) JSON CALL -------------------------------------------------------- -->
   <step id="JsonCall"
         className="com.ataccama.dqc.tasks.io.json.call.JsonCall">
     <properties method="POST"
-                url="https://teranet.prod.ataccama.online/graphql"
+                url="https://teranet.prod.ataccama.online/graphql"  <!-- ← replace -->
                 encoding="UTF-8"
                 templateBeginMark="#"
                 templateEndMark="#">
       <headers>
         <header name="Content-Type"  value="application/json"/>
-        <header name="Authorization" value="Bearer YWRtaW46TGFlZ2V2YWVHYWp1RDlpZXF1ZWljaG9vRG9uaWVwYTA="/>
+        <header name="Authorization"
+                value="Bearer YWRtaW46TGFlZ2V2YWVHYWp1RDlpZXF1ZWljaG9vRG9uaWVwYTA="/> <!-- ← replace -->
       </headers>
+
       <inputTemplate>{
         "query":"query GetLocationCatalogItems($locationGid:GID!){location(gid:$locationGid){draftVersion{name catalogItems{edges{node{gid draftVersion{name} publishedVersion{description attributes{edges{node{draftVersion{name description}}}}}}}}}}}",
         "variables":{"locationGid":"#src_locationGid#"}
@@ -42,7 +43,7 @@
       <reader>
         <dataStreams>
 
-          <!-- flatten your catalog items -->
+          <!-- 2A) ITEMS (one row per catalog item) -->
           <rootJsonStreamConfig name="Items"
                                 path="$.data.location.draftVersion.catalogItems.edges">
             <attributes>
@@ -57,7 +58,8 @@
             </shadowColumns>
 
             <dataStreams>
-              <!-- flatten each attribute on that item -->
+
+              <!-- 2B) ATTRIBUTES (one row per attribute of this item) -->
               <childJsonStreamConfig name="Attributes"
                                      path="$.node.publishedVersion.attributes.edges">
                 <attributes>
@@ -76,6 +78,7 @@
                 </shadowColumns>
                 <dataStreams/>
               </childJsonStreamConfig>
+
             </dataStreams>
           </rootJsonStreamConfig>
 
@@ -84,7 +87,10 @@
     </properties>
   </step>
 
-  <!-- 3A) write out just the items -->
+
+  <!-- 3) OUTPUTS ---------------------------------------------------------- -->
+
+  <!-- catalog_items.csv -->
   <step id="ItemsOutput"
         className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter">
     <properties writeHeader="true"
@@ -99,7 +105,7 @@
     <target step="ItemsOutput" endpoint="in"/>
   </connection>
 
-  <!-- 3B) write out each attribute -->
+  <!-- catalog_attributes.csv -->
   <step id="AttributesOutput"
         className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter">
     <properties writeHeader="true"
@@ -114,5 +120,19 @@
     <target step="AttributesOutput" endpoint="in"/>
   </connection>
 
-</purity-config>
+  <!-- passthrough for JsonCall/out so runtime stays quiet -->
+  <step id="OutPass"
+        className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter">
+    <properties writeHeader="false"
+                fileName="out_passthrough.csv"
+                fieldSeparator=";"
+                writeAllColumns="true"
+                encoding="UTF-8"
+                lineSeparator="\n"/>
+  </step>
+  <connection>
+    <source step="JsonCall" endpoint="out"/>
+    <target step="OutPass"  endpoint="in"/>
+  </connection>
 
+</purity-config>
