@@ -1,11 +1,11 @@
-2025-06-08 01:38:49 [INFO]    com.ataccama.lib.securityutil.javaencryption.DefaultEncryptionEngine messageId=createDefaultKeyProvider reason=the 'properties.encryption.keystore' property not specified
-2025-06-08 01:38:49 [INFO]    com.ataccama.lib.securityutil.javaencryption.DefaultEncryptionEngine messageId=createDefaultKeyProvider reason=the 'internal.encryption.keystore' property not specified
-08.06.2025 01:38:49 [INFO]     Switching to logging setup from C:\Users\kdavty01\AppData\Local\Temp\loggingConfig9901157511265719412.tmp
-08.06.2025 01:38:49 [INFO]     Using following licenses:
-08.06.2025 01:38:49 [INFO]       C:\Users\kdavty01\Downloads\ataccama-one-desktop-14.5.1.231204-9325-35ed3d49-windows\runtime\license_keys\license_teranet_USER_v14_subscription_2025-09-28.plf
-08.06.2025 01:38:49 [INFO]     ============================================================
-08.06.2025 01:38:49 [INFO]     This is a subscription USER license for developers' laptops for "Teranet". It expires on 2025-09-28.
-08.06.2025 01:38:49 [INFO]     ============================================================
-08.06.2025 01:38:49 [INFO]     Using Ataccama DQC configuration file C:\Users\kdavty01\Downloads\Workflow Workspace11\OpenCommercial\json_try1.plan
-08.06.2025 01:38:49 [INFO]     Using runtime configuration file C:\Users\kdavty01\AppData\Local\Temp\runtimeCfg4588595503042542090.tmp
-08.06.2025 01:38:50 [FATAL]    Error 'Step id:JsonCall has invalid properties (There is no property 'logResponseCode' on class com.ataccama.dqc.tasks.io.json.call.JsonCall)!' occurred.
+2025-06-08 03:15:49 [INFO]    com.ataccama.lib.securityutil.javaencryption.DefaultEncryptionEngine messageId=createDefaultKeyProvider reason=the 'properties.encryption.keystore' property not specified
+2025-06-08 03:15:49 [INFO]    com.ataccama.lib.securityutil.javaencryption.DefaultEncryptionEngine messageId=createDefaultKeyProvider reason=the 'internal.encryption.keystore' property not specified
+08.06.2025 03:15:49 [INFO]     Switching to logging setup from C:\Users\kdavty01\AppData\Local\Temp\loggingConfig13574407925902235903.tmp
+08.06.2025 03:15:50 [INFO]     Using following licenses:
+08.06.2025 03:15:50 [INFO]       C:\Users\kdavty01\Downloads\ataccama-one-desktop-14.5.1.231204-9325-35ed3d49-windows\runtime\license_keys\license_teranet_USER_v14_subscription_2025-09-28.plf
+08.06.2025 03:15:50 [INFO]     ============================================================
+08.06.2025 03:15:50 [INFO]     This is a subscription USER license for developers' laptops for "Teranet". It expires on 2025-09-28.
+08.06.2025 03:15:50 [INFO]     ============================================================
+08.06.2025 03:15:50 [INFO]     Using Ataccama DQC configuration file C:\Users\kdavty01\Downloads\Workflow Workspace11\OpenCommercial\json_try1.plan
+08.06.2025 03:15:50 [INFO]     Using runtime configuration file C:\Users\kdavty01\AppData\Local\Temp\runtimeCfg5990459861713799042.tmp
+08.06.2025 03:15:51 [FATAL]    Error 'Step id:JsonCall has invalid properties (There is no property 'saveResponseBodyToColumn' on class com.ataccama.dqc.tasks.io.json.call.JsonCall)!' occurred.
