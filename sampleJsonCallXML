@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<purity-config version="14.5.1.231113-257-b7b25153">
+	<references/>
+	<component-mappings>
+		<propertyMappings/>
+	</component-mappings>
+
+<!-- (Json Call) --><step mode="NORMAL" className="com.ataccama.dqc.tasks.io.json.call.JsonCall" disabled="false" id="Json Call">
+		<properties templateEndMark="#" method="POST" timeoutMs="1000" urlBeginMark="%" urlEndMark="%" templateBeginMark="#" encoding="UTF-8" url="http://localhost:8888/cleanse_service" delayBetweenRequestsMs="0">
+			<dataFormatParameters falseValue="false" dateTimeFormat="yyyy-MM-dd HH:mm:ss" decimalSeparator="." dayFormat="yyyy-MM-dd" trueValue="true" dateFormatLocale="en_US" thousandsSeparator=""/>
+			<headers>
+				<header name="Authorization" value="Basic YWRtaW46MTIzNA=="/>
+			</headers>
+			<inputTemplate>{
+	&quot;request_input&quot;:
+								{ 
+								  &quot;sin&quot; : &quot;#src_sin#&quot;, 
+								  &quot;card&quot; : &quot;#src_card#&quot;
+                                }
+}
+
+
+</inputTemplate>
+			<reader>
+				<dataFormatParameters falseValue="false" dateTimeFormat="yy-MM-dd HH:mm:ss" decimalSeparator="." dayFormat="yy-MM-dd" trueValue="true" dateFormatLocale="en_US" class="com.ataccama.dqc.tasks.io.text.read.TextReaderDataFormatParameters" thousandsSeparator=""/>
+				<dataStreams>
+					<rootJsonStreamConfig path="$.response_output" name="response" minOneRecord="true" maxOneRecord="false">
+						<attributes>
+							<attribute path="card_result" name="std_card" type="STRING"/>
+							<attribute path="sin_result" name="std_sin" type="STRING"/>
+						</attributes>
+						<dataStreams/>
+						<scorer>
+							<scoringEntries>
+								<scoringEntry explain="true" score="0" explainAs="WLA_NOT_FOUND" key="WLA_NOT_FOUND"/>
+								<scoringEntry explain="true" score="0" explainAs="WLA_MULTIPLE" key="WLA_MULTIPLE"/>
+							</scoringEntries>
+						</scorer>
+						<shadowColumns>
+							<shadowColumnDef defaultExpression="in.src_card" name="src_card" type="STRING"/>
+							<shadowColumnDef defaultExpression="in.src_sin" name="src_sin" type="STRING"/>
+						</shadowColumns>
+					</rootJsonStreamConfig>
+				</dataStreams>
+			</reader>
+			<scorer>
+				<scoringEntries>
+					<scoringEntry explain="true" score="0" explainAs="WLA_TARGET_UNREACHABLE" key="WLA_TARGET_UNREACHABLE"/>
+					<scoringEntry explain="true" score="0" explainAs="WLA_TIMEOUT" key="WLA_TIMEOUT"/>
+					<scoringEntry explain="true" score="0" explainAs="WLA_RESPONSE_CODE" key="WLA_RESPONSE_CODE"/>
+					<scoringEntry explain="true" score="0" explainAs="WLA_INVALID_JSON" key="WLA_INVALID_JSON"/>
+				</scoringEntries>
+			</scorer>
+		</properties>
+		<visual-constraints layout="vertical" bounds="144,288,-1,-1"/>
+	</step>
+	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
+		<source endpoint="out" step="Json Call"/>
+		<target endpoint="in" step="all records"/>
+		<visual-constraints>
+			<bendpoints>
+				<point location="263,336"/>
+			</bendpoints>
+		</visual-constraints>
+	</connection>
+	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
+		<source endpoint="response" step="Json Call"/>
+		<target endpoint="in" step="response output"/>
+		<visual-constraints>
+			<bendpoints>
+				<point location="72,336"/>
+			</bendpoints>
+		</visual-constraints>
+	</connection>
+
+
+
+<!-- (all records) --><step mode="NORMAL" className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" disabled="false" id="all records">
+		<properties writeHeader="true" fileName="../data/out/12.02 all_records_out.csv" fieldSeparator=";" generateMetadata="true" stringQualifierEscape="&quot;" writeAllColumns="true" compression="NONE" encoding="UTF-8" lineSeparator="\r\n" stringQualifier="&quot;" useStringQualifierOnAllColumns="false">
+			<columns/>
+			<dataFormatParameters falseValue="false" dateTimeFormat="yyyy-MM-dd HH:mm:ss" decimalSeparator="." dayFormat="yyyy-MM-dd" trueValue="true" dateFormatLocale="en_US" thousandsSeparator=""/>
+		</properties>
+		<visual-constraints layout="vertical" bounds="240,456,-1,-1"/>
+	</step>
+
+
+
+<!-- (party_full) --><step mode="NORMAL" className="com.ataccama.dqc.tasks.io.text.read.TextFileReader" disabled="false" id="party_full">
+		<properties lineMaxReadLength="65536" fileName="../data/in/party.csv" fieldSeparator=";" stringQualifierEscape="&quot;" numberOfLinesInFooter="0" compression="NONE" encoding="UTF-8" lineSeparator="\r\n" stringQualifier="&quot;" numberOfLinesInHeader="1">
+			<columns>
+				<textReaderColumn name="src_name" ignore="false" type="STRING"/>
+				<textReaderColumn name="src_gender" ignore="false" type="STRING"/>
+				<textReaderColumn name="src_birth_date" ignore="false" type="STRING"/>
+				<textReaderColumn name="src_sin" ignore="false" type="STRING"/>
+				<textReaderColumn name="src_card" ignore="false" type="STRING"/>
+				<textReaderColumn name="src_address" ignore="false" type="STRING"/>
+				<textReaderColumn name="src_email" ignore="false" type="STRING"/>
+				<textReaderColumn name="src_primary_key" ignore="false" type="STRING"/>
+				<textReaderColumn name="meta_last_update" ignore="false" type="STRING"/>
+			</columns>
+			<dataFormatParameters falseValue="false" dateTimeFormat="yy-MM-dd HH:mm:ss" decimalSeparator="." dayFormat="yy-MM-dd" trueValue="true" dateFormatLocale="en_US" thousandsSeparator=""/>
+			<errorHandlingStrategy rejectFileName="rejected.txt">
+				<errorInstructions>
+					<errorInstruction dataStrategy="READ_POSSIBLE" errorType="EXTRA_DATA" putToLog="true" putToReject="false"/>
+					<errorInstruction dataStrategy="STOP" errorType="LONG_LINE" putToLog="true" putToReject="true"/>
+					<errorInstruction dataStrategy="STOP" errorType="PROCESSING_ERROR" putToLog="true" putToReject="false"/>
+					<errorInstruction dataStrategy="READ_POSSIBLE" errorType="INVALID_DATE" putToLog="true" putToReject="false"/>
+					<errorInstruction dataStrategy="READ_POSSIBLE" errorType="SHORT_LINE" putToLog="true" putToReject="true"/>
+					<errorInstruction dataStrategy="NULL_VALUE" errorType="UNPARSABLE_FIELD" putToLog="true" putToReject="false"/>
+				</errorInstructions>
+			</errorHandlingStrategy>
+			<shadowColumns/>
+		</properties>
+		<visual-constraints layout="vertical" bounds="144,168,-1,-1"/>
+	</step>
+	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
+		<source endpoint="out" step="party_full"/>
+		<target endpoint="in" step="Json Call"/>
+		<visual-constraints>
+			<bendpoints/>
+		</visual-constraints>
+	</connection>
+
+
+
+<!-- (response output) --><step mode="NORMAL" className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" disabled="false" id="response output">
+		<properties writeHeader="true" fileName="../data/out/12.02 response_out.csv" fieldSeparator=";" generateMetadata="true" stringQualifierEscape="&quot;" writeAllColumns="true" compression="NONE" encoding="UTF-8" lineSeparator="\r\n" stringQualifier="&quot;" useStringQualifierOnAllColumns="false">
+			<columns/>
+			<dataFormatParameters falseValue="false" dateTimeFormat="yyyy-MM-dd HH:mm:ss" decimalSeparator="." dayFormat="yyyy-MM-dd" trueValue="true" dateFormatLocale="en_US" thousandsSeparator=""/>
+		</properties>
+		<visual-constraints layout="vertical" bounds="48,456,-1,-1"/>
+	</step>
+
+
+
+<modelComment backgroundColor="128,255,128" borderColor="255,255,255" bounds="24,24,457,102" foregroundColor="51,51,51">Plan Goals
+The goal of this plan is to get a response to a request made by a JSON Call 
+to an online service. 
+
+The plan uses Json Call step to call an online service that cleanses selected 
+columns in the source data (src_sin, src_card) and then writes the service 
+response into a text file.</modelComment>
+
+
+
+<modelComment backgroundColor="219,219,219" borderColor="255,255,255" bounds="504,144,529,182" foregroundColor="51,51,51">Input Template configuration
+
+Make sure to use a correct JSON Call syntax to map the source data columns 
+to the service input:
+{&quot;&lt;request_input&gt;&quot;:{ &quot;&lt;service_input&gt;&quot; : &quot;#&lt;source_data_column&gt;#&quot; }}
+
+Open the component that defines the service logic (here cleanse_service.comp) 
+and make sure that:
+- request_input corresponds to the Integration Input step Id
+- service_input corresponds to the Integration Input step Columns</modelComment>
+
+
+
+<modelComment backgroundColor="219,219,219" borderColor="255,255,255" bounds="504,336,529,134" foregroundColor="51,51,51">Authentication
+
+Go to Http Headers tab and add the following row:
+- Name: Authorization
+- Value: &lt;authentication_type&gt; &lt;string_code&gt;, e.g., Basic YWRtaW46MTIzNA==
+You can get the string code by converting the user name and password to 
+base64 format: e.g., coding.toBase64(&quot;admin:1234&quot;).</modelComment>
+
+
+
+<modelComment backgroundColor="219,219,219" borderColor="255,255,255" bounds="720,24,388,86" foregroundColor="0,0,0">Json Call step calls an online service by URL in the JSON format 
+and receives the service response.
+In this example, POST method is used to send queries 
+with a message (request).</modelComment>
+
+
+
+<modelComment backgroundColor="255,255,180" borderColor="255,255,255" bounds="504,24,193,86" foregroundColor="51,51,51">How to run this tutorial
+================
+1. Run json.serverConfig
+2. Run 12.02 Json Call.plan</modelComment>
+
+
+
+<modelComment backgroundColor="219,219,219" borderColor="255,255,255" bounds="24,528,311,150" foregroundColor="51,51,51">Json Call in this example has 2 output endpoints:
+
+- &#39;out&#39; is the default output endpoint containing 
+copy of the source data 
+
+- &#39;response&#39; is an additional output (data stream) 
+containing mapping of the service response to the 
+plan data columns.</modelComment>
+
+
+
+<modelComment backgroundColor="219,219,219" borderColor="255,255,255" bounds="504,480,529,230" foregroundColor="51,51,51">Json Call output endpoints (data streams) are defined in the Reader &gt; Data Streams. 
+Each endpoint can contain columns with two types of data:
+
+I. Service response
+To map service response to the plan data columns, define new data stream Attribute:
+- Name: name of the new data column in the plan. 
+- Path: path to the JSON field in the response that should be associated with this 
+column.
+
+II. Source data passed from the input
+To pass source data directly to the output, add a new Shadow Column to the data 
+stream using the following notation:
+- Name: &lt;source_data&gt;
+- Default Expression: in.&lt;source_data&gt;</modelComment>
+
+</purity-config>
