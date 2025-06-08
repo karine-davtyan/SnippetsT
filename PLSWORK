@@ -1,101 +1,111 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<purity-config xmlns:comm="http://www.ataccama.com/purity/comment"
-               version="14.5.1.231204-6829-cc8f270d">
-  <references/>
-  <component-mappings>
-    <propertyMappings/>
-  </component-mappings>
+<?xml version='1.0' encoding='UTF-8'?>
+<purity-config version="14.5.1.231204-6829-cc8f270d">
+	<references/>
+	<component-mappings>
+		<propertyMappings/>
+	</component-mappings>
 
-  <!-- JSON Reader step -->
-  <step id="Json Reader" mode="NORMAL"
-        className="com.ataccama.dqc.tasks.io.json.reader.JsonReader">
-    <properties fileName="./sz_nb_ext.json" encoding="UTF-8">
-      <dataStreams>
+<!-- (AttributesOut) --><step mode="NORMAL" className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" disabled="false" id="AttributesOut">
+		<properties writeHeader="true" fileName="./attributes_out.csv" fieldSeparator=";" generateMetadata="true" writeAllColumns="true" compression="NONE" encoding="UTF-8" lineSeparator="\r\n" useStringQualifierOnAllColumns="false">
+			<columns/>
+			<dataFormatParameters falseValue="false" dateTimeFormat="yyyy-MM-dd HH:mm:ss" decimalSeparator="." dayFormat="yyyy-MM-dd" trueValue="true" dateFormatLocale="en_US" thousandsSeparator=""/>
+		</properties>
+		<visual-constraints layout="vertical" bounds="312,120,-1,-1"/>
+	</step>
 
-        <!-- 1) Top-level location object -->
-        <jsonStreamConfig path="$.data.location" name="location">
-          <attributes>
-            <attribute path="draftVersion.name" name="location_name" type="STRING"/>
-          </attributes>
-          <shadowColumns>
-            <shadowColumnDef name="location_name" defaultExpression="location_name" type="STRING"/>
-          </shadowColumns>
-          <dataStreams>
 
-            <!-- 2) One record per catalog item -->
-            <jsonStreamConfig path="draftVersion.catalogItems.edges" name="items">
-              <attributes>
-                <attribute path="node.gid"                         name="item_gid"         type="STRING"/>
-                <attribute path="node.draftVersion.name"           name="item_name"        type="STRING"/>
-                <attribute path="node.publishedVersion.description" name="item_description" type="STRING"/>
-              </attributes>
-              <shadowColumns>
-                <shadowColumnDef name="location_name"
-                                 defaultExpression="location.location_name"
-                                 type="STRING"/>
-              </shadowColumns>
-              <dataStreams>
 
-                <!-- 3) One record per attribute on each item -->
-                <jsonStreamConfig path="node.publishedVersion.attributes.edges" name="attributes">
-                  <attributes>
-                    <attribute path="node.draftVersion.name"        name="attribute_name"        type="STRING"/>
-                    <attribute path="node.draftVersion.description" name="attribute_description" type="STRING"/>
-                  </attributes>
-                  <shadowColumns>
-                    <shadowColumnDef name="location_name"
-                                     defaultExpression="items.location_name"
-                                     type="STRING"/>
-                    <shadowColumnDef name="item_gid"
-                                     defaultExpression="items.item_gid"
-                                     type="STRING"/>
-                    <shadowColumnDef name="item_name"
-                                     defaultExpression="items.item_name"
-                                     type="STRING"/>
-                  </shadowColumns>
-                </jsonStreamConfig>
+<!-- (ItemsOut) --><step mode="NORMAL" className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" disabled="false" id="ItemsOut">
+		<properties writeHeader="true" fileName="./items_out.csv" fieldSeparator=";" generateMetadata="true" writeAllColumns="true" compression="NONE" encoding="UTF-8" lineSeparator="\r\n" useStringQualifierOnAllColumns="false">
+			<columns/>
+			<dataFormatParameters falseValue="false" dateTimeFormat="yyyy-MM-dd HH:mm:ss" decimalSeparator="." dayFormat="yyyy-MM-dd" trueValue="true" dateFormatLocale="en_US" thousandsSeparator=""/>
+		</properties>
+		<visual-constraints layout="vertical" bounds="144,144,-1,-1"/>
+	</step>
 
-              </dataStreams>
-            </jsonStreamConfig>
 
-          </dataStreams>
-        </jsonStreamConfig>
 
-      </dataStreams>
-    </properties>
-    <visual-constraints layout="horizontal" bounds="48,312,629,544"/>
-  </step>
+<!-- (Json Reader) --><step mode="NORMAL" className="com.ataccama.dqc.tasks.io.json.reader.JsonReader" disabled="false" id="Json Reader">
+		<properties fileName="./sz_nb_ext.json" encoding="UTF-8">
+			<dataFormatParameters falseValue="false" dateTimeFormat="yy-MM-dd HH:mm:ss" decimalSeparator="." dayFormat="yy-MM-dd" trueValue="true" dateFormatLocale="en_US" class="com.ataccama.dqc.tasks.io.text.read.TextReaderDataFormatParameters" thousandsSeparator=""/>
+			<dataStreams>
+				<rootJsonStreamConfig path="$.data.location" name="location" minOneRecord="true" maxOneRecord="false">
+					<attributes>
+						<attribute path="draftVersion.name" name="location_name" type="STRING"/>
+					</attributes>
+					<dataStreams>
+						<childJsonStreamConfig path="draftVersion.catalogItems.edges" name="items" minOneRecord="false" maxOneRecord="false">
+							<attributes>
+								<attribute path="node.gid" name="item_gid" type="STRING"/>
+								<attribute path="node.draftVersion.name" name="item_name" type="STRING"/>
+								<attribute path="node.publishedVersion.description" name="item_description" type="STRING"/>
+							</attributes>
+							<dataStreams>
+								<childJsonStreamConfig path="node.publishedVersion.attributes.edges" name="attributes" minOneRecord="false" maxOneRecord="false">
+									<attributes>
+										<attribute path="node.draftVersion.name" name="attribute_name" type="STRING"/>
+										<attribute path="node.draftVersion.description" name="attribute_description" type="STRING"/>
+									</attributes>
+									<dataStreams/>
+									<scorer>
+										<scoringEntries/>
+									</scorer>
+									<shadowColumns>
+										<shadowColumnDef defaultExpression="items.location_name" name="location_name" type="STRING"/>
+										<shadowColumnDef defaultExpression="items.item_gid" name="item_gid" type="STRING"/>
+										<shadowColumnDef defaultExpression="items.item_name" name="item_name" type="STRING"/>
+									</shadowColumns>
+								</childJsonStreamConfig>
+							</dataStreams>
+							<scorer>
+								<scoringEntries/>
+							</scorer>
+							<shadowColumns>
+								<shadowColumnDef defaultExpression="location.location_name" name="location_name" type="STRING"/>
+							</shadowColumns>
+						</childJsonStreamConfig>
+					</dataStreams>
+					<scorer>
+						<scoringEntries/>
+					</scorer>
+					<shadowColumns>
+						<shadowColumnDef defaultExpression="location_name" name="location_name1" type="STRING"/>
+					</shadowColumns>
+				</rootJsonStreamConfig>
+			</dataStreams>
+		</properties>
+		<visual-constraints layout="vertical" bounds="58,10,629,544"/>
+	</step>
+	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
+		<source endpoint="attributes" step="Json Reader"/>
+		<target endpoint="in" step="AttributesOut"/>
+		<visual-constraints>
+			<bendpoints/>
+		</visual-constraints>
+	</connection>
+	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
+		<source endpoint="items" step="Json Reader"/>
+		<target endpoint="in" step="ItemsOut"/>
+		<visual-constraints>
+			<bendpoints/>
+		</visual-constraints>
+	</connection>
+	<connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
+		<source endpoint="location" step="Json Reader"/>
+		<target endpoint="in" step="out"/>
+		<visual-constraints>
+			<bendpoints/>
+		</visual-constraints>
+	</connection>
 
-  <!-- Write items -->
-  <step id="ItemsOut" mode="NORMAL"
-        className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter">
-    <properties fileName="./items_out.csv"
-                fieldSeparator=";"
-                writeHeader="true"
-                writeAllColumns="true"
-                encoding="UTF-8"
-                lineSeparator="\r\n"/>
-  </step>
 
-  <!-- Write attributes -->
-  <step id="AttributesOut" mode="NORMAL"
-        className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter">
-    <properties fileName="./attributes_out.csv"
-                fieldSeparator=";"
-                writeHeader="true"
-                writeAllColumns="true"
-                encoding="UTF-8"
-                lineSeparator="\r\n"/>
-  </step>
 
-  <!-- Connect endpoints -->
-  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection">
-    <source step="Json Reader" endpoint="items"/>
-    <target step="ItemsOut"    endpoint="in"/>
-  </connection>
-  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection">
-    <source step="Json Reader" endpoint="attributes"/>
-    <target step="AttributesOut" endpoint="in"/>
-  </connection>
+<!-- (out) --><step mode="NORMAL" className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" disabled="false" id="out">
+		<properties writeHeader="true" fileName="idkatp.csv" fieldSeparator=";" generateMetadata="true" stringQualifierEscape="&quot;" writeAllColumns="true" compression="NONE" encoding="UTF-8" lineSeparator="\r\n" stringQualifier="&quot;" useStringQualifierOnAllColumns="false">
+			<columns/>
+			<dataFormatParameters falseValue="false" dateTimeFormat="yyyy-MM-dd HH:mm:ss" decimalSeparator="." dayFormat="yyyy-MM-dd" trueValue="true" dateFormatLocale="en_US" thousandsSeparator=""/>
+		</properties>
+		<visual-constraints layout="vertical" bounds="24,120,48,48"/>
+	</step>
 
 </purity-config>
