@@ -1,1 +1,4 @@
-{"errors":[{"message":"Invalid syntax with offending token '<EOF>' at line 1 column 232","locations":[{"line":1,"column":232}],"extensions":{"classification":"InvalidSyntax"}}],"extensions":{"__$r":"In=Um+a1#?#p\"6K\"g(m6htIu8;gbW3-HVw`>lOBg&.x\"\\#Z:_1k`SxbFmpE$;-%s|hw'Cf;E}iD\"n=Ahy.fHZ=k{{xOc8&PorFa1!')\\6HQ8C0\"J8WWpaz,eBw[X/be~z:\"`QpMfl*=EZ:?TzPj"}}
+{
+  "query": "query GetLocationCatalogItems($locationGid:GID!){location(gid:$locationGid){draftVersion{name catalogItems{edges{node{gid draftVersion{name} publishedVersion{description attributes{edges{node{draftVersion{name description}}}}}}}}}}}",
+  "variables": { "locationGid": "76639008-0000-7000-0000-00001402c8d6" }
+}
