@@ -5,7 +5,7 @@
     <propertyMappings/>
   </component-mappings>
 
-  <!-- 1) Read list of location GIDs -->
+  <!-- 1) Read location GIDs -->
   <step id="LocationInput" mode="NORMAL"
         className="com.ataccama.dqc.tasks.io.text.read.TextFileReader">
     <properties fileName="./location_gids.csv"
@@ -19,16 +19,14 @@
     </properties>
   </step>
 
-  <!-- 2) GraphQL call + JSON parsing -->
+  <!-- 2) GraphQL call with embedded reader -->
   <step id="JsonCall" mode="NORMAL"
         className="com.ataccama.dqc.tasks.io.json.call.JsonCall">
     <properties method="POST"
                 url="https://teranet.prod.ataccama.online/graphql"
                 timeoutMs="30000"
                 templateBeginMark="#"
-                templateEndMark="#"
-                requestDebugFile="debug_request.log"
-                responseDebugFile="debug_response.log">
+                templateEndMark="#">
       <headers>
         <header name="Content-Type" value="application/json"/>
         <header name="Authorization"
@@ -80,7 +78,7 @@
                 <shadowColumns>
                   <shadowColumnDef name="location_name"
                                    type="STRING"
-                                   defaultExpression="in.location_name"/>
+                                   defaultExpression="location_name"/>
                 </shadowColumns>
 
                 <dataStreams>
@@ -101,16 +99,16 @@
                     <shadowColumns>
                       <shadowColumnDef name="src_locationGid"
                                        type="STRING"
-                                       defaultExpression="in.src_locationGid"/>
+                                       defaultExpression="src_locationGid"/>
                       <shadowColumnDef name="location_name"
                                        type="STRING"
-                                       defaultExpression="in.location_name"/>
+                                       defaultExpression="location_name"/>
                       <shadowColumnDef name="item_gid"
                                        type="STRING"
-                                       defaultExpression="in.item_gid"/>
+                                       defaultExpression="item_gid"/>
                       <shadowColumnDef name="item_name"
                                        type="STRING"
-                                       defaultExpression="in.item_name"/>
+                                       defaultExpression="item_name"/>
                     </shadowColumns>
                   </childJsonStreamConfig>
 
@@ -125,7 +123,7 @@
     </properties>
   </step>
 
-  <!-- 3) Write items_out.csv -->
+  <!-- 3) Write items -->
   <step id="ItemsOut" mode="NORMAL"
         className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter">
     <properties fileName="./items_out.csv"
@@ -136,7 +134,7 @@
                 lineSeparator="\r\n"/>
   </step>
 
-  <!-- 4) Write attributes_out.csv -->
+  <!-- 4) Write attributes -->
   <step id="AttributesOut" mode="NORMAL"
         className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter">
     <properties fileName="./attributes_out.csv"
@@ -147,7 +145,7 @@
                 lineSeparator="\r\n"/>
   </step>
 
-  <!-- 5) Pass-through for default 'out' endpoint -->
+  <!-- 5) Pass-through default out -->
   <step id="RawOut" mode="NORMAL"
         className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter">
     <properties fileName="./raw_out.csv"
@@ -175,5 +173,4 @@
     <source step="JsonCall" endpoint="out"/>
     <target step="RawOut"      endpoint="in"/>
   </connection>
-
 </purity-config>
