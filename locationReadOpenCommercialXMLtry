@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <purity-config version="14.5.1.231204-6829-cc8f270d">
 
-  <!-- INPUT -->
+  <!-- INPUT ------------------------------------------------------------ -->
   <step id="LocationInput"
         className="com.ataccama.dqc.tasks.io.text.read.TextFileReader">
     <properties fileName="./location_gids.csv"
@@ -15,12 +15,12 @@
     </properties>
   </step>
 
-  <connection>
+  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
     <source step="LocationInput" endpoint="out"/>
     <target step="JsonCall"      endpoint="in"/>
   </connection>
 
-  <!-- JSON CALL -->
+  <!-- JSON CALL -------------------------------------------------------- -->
   <step id="JsonCall"
         className="com.ataccama.dqc.tasks.io.json.call.JsonCall">
     <properties method="POST"
@@ -40,8 +40,7 @@
 
       <reader>
         <dataStreams>
-
-          <!-- ITEMS stream -->
+          <!-- ITEMS -->
           <rootJsonStreamConfig name="Items"
                                 path="$.data.location.draftVersion.catalogItems.edges">
             <attributes>
@@ -56,7 +55,7 @@
             </shadowColumns>
 
             <dataStreams>
-              <!-- ATTRIBUTES stream -->
+              <!-- ATTRIBUTES -->
               <childJsonStreamConfig name="Attributes"
                                      path="$.node.publishedVersion.attributes.edges">
                 <attributes>
@@ -73,7 +72,6 @@
               </childJsonStreamConfig>
             </dataStreams>
           </rootJsonStreamConfig>
-
         </dataStreams>
       </reader>
     </properties>
@@ -89,7 +87,7 @@
                 encoding="UTF-8"
                 lineSeparator="\n"/>
   </step>
-  <connection>
+  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
     <source step="JsonCall" endpoint="Items"/>
     <target step="ItemsOutput" endpoint="in"/>
   </connection>
@@ -104,7 +102,7 @@
                 encoding="UTF-8"
                 lineSeparator="\n"/>
   </step>
-  <connection>
+  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
     <source step="JsonCall" endpoint="Attributes"/>
     <target step="AttributesOutput" endpoint="in"/>
   </connection>
@@ -119,7 +117,7 @@
                 encoding="UTF-8"
                 lineSeparator="\n"/>
   </step>
-  <connection>
+  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
     <source step="JsonCall" endpoint="out"/>
     <target step="OutPass"  endpoint="in"/>
   </connection>
