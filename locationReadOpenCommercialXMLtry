@@ -1,81 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <purity-config version="14.5.1.231204-6829-cc8f270d">
 
-  <!-- read GIDs -->
+  <!-- 1) INPUT GID(s) -->
   <step id="LocationInput" className="com.ataccama.dqc.tasks.io.text.read.TextFileReader" mode="NORMAL">
     <properties fileName="./location_gids.csv" fieldSeparator=";" encoding="UTF-8" lineSeparator="\n" numberOfLinesInHeader="1">
       <columns><textReaderColumn name="src_locationGid" type="STRING"/></columns>
     </properties>
   </step>
 
-  <!-- GraphQL call -->
+  <!-- 2) JSON CALL with response body capture -->
   <step id="JsonCall" className="com.ataccama.dqc.tasks.io.json.call.JsonCall" mode="NORMAL">
     <properties method="POST"
                 url="https://YOUR_URL/graphql"
                 encoding="UTF-8"
                 templateBeginMark="#"
                 templateEndMark="#"
-                parseErrorResponse="true">
+                parseErrorResponse="true"
+                saveResponseBodyToColumn="responseBody">
+
       <headers>
         <header name="Content-Type"  value="application/json"/>
         <header name="Authorization" value="Basic YOUR_TOKEN"/>
       </headers>
 
-      <!-- body: one line, balanced braces -->
+      <!-- one‑line body; #src_locationGid# will be replaced from CSV -->
       <inputTemplate>{"query":"query GetLocationCatalogItems($locationGid:GID!){location(gid:$locationGid){draftVersion{name catalogItems{edges{node{gid draftVersion{name} publishedVersion{description attributes{edges{node{draftVersion{name description}}}}}}}}}}}","variables":{"locationGid":"#src_locationGid#"}}</inputTemplate>
 
       <reader>
         <dataStreams>
-
-          <!-- dump full payload -->
+          <!-- dump raw JSON if response IS JSON -->
           <rootJsonStreamConfig name="Raw" path="$">
             <attributes><attribute path="$" name="raw_json" type="STRING"/></attributes>
             <dataStreams/>
           </rootJsonStreamConfig>
-
-          <!-- catalog items -->
-          <rootJsonStreamConfig name="Items" path="$.data.location.draftVersion.catalogItems.edges" minOneRecord="false">
-            <attributes>
-              <attribute path="$.node.gid"                           name="item_gid"  type="STRING"/>
-              <attribute path="$.node.draftVersion.name"            name="item_name" type="STRING"/>
-              <attribute path="$.node.publishedVersion.description" name="item_desc" type="STRING"/>
-            </attributes>
-            <shadowColumns>
-              <shadowColumnDef name="src_locationGid" defaultExpression="in.src_locationGid" type="STRING"/>
-            </shadowColumns>
-
-            <dataStreams>
-              <!-- attributes per item -->
-              <childJsonStreamConfig name="Attributes" path="$.node.publishedVersion.attributes.edges" minOneRecord="false">
-                <attributes>
-                  <attribute path="$.node.draftVersion.name"        name="attr_name" type="STRING"/>
-                  <attribute path="$.node.draftVersion.description" name="attr_desc" type="STRING"/>
-                </attributes>
-                <shadowColumns>
-                  <shadowColumnDef name="src_locationGid" defaultExpression="in.src_locationGid" type="STRING"/>
-                </shadowColumns>
-                <dataStreams/>
-              </childJsonStreamConfig>
-            </dataStreams>
-          </rootJsonStreamConfig>
-
         </dataStreams>
       </reader>
     </properties>
   </step>
 
-  <!-- writers -->
-  <step id="RawOutput"           className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" mode="NORMAL"><properties fileName="raw.json"              writeHeader="false" fieldSeparator=";" writeAllColumns="true" lineSeparator="\n"/></step>
-  <step id="ItemsOutput"         className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" mode="NORMAL"><properties fileName="catalog_items.csv"      writeHeader="true"  fieldSeparator=";" writeAllColumns="true" lineSeparator="\n"/></step>
-  <step id="AttributesOutput"    className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" mode="NORMAL"><properties fileName="catalog_attributes.csv" writeHeader="true"  fieldSeparator=";" writeAllColumns="true" lineSeparator="\n"/></step>
-  <step id="OutPass"             className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" mode="NORMAL"><properties fileName="out_passthrough.csv"    writeHeader="false" fieldSeparator=";" writeAllColumns="true" lineSeparator="\n"/></step>
+  <!-- 3) WRITE RESPONSE BODY (HTML / JSON / anything) -->
+  <step id="BodyOutput" className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" mode="NORMAL">
+    <properties fileName="http_body.txt" writeHeader="false" fieldSeparator=";" writeAllColumns="false" lineSeparator="\n">
+      <columns><column name="responseBody"/></columns>
+    </properties>
+  </step>
+
+  <!-- 4) WRITE raw_json if parsable -->
+  <step id="RawOutput" className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" mode="NORMAL">
+    <properties fileName="raw.json" writeHeader="false" fieldSeparator=";" writeAllColumns="true" lineSeparator="\n"/>
+  </step>
+
+  <!-- 5) Pass‑through original rows -->
+  <step id="OutPass" className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" mode="NORMAL">
+    <properties fileName="out_passthrough.csv" writeHeader="false" fieldSeparator=";" writeAllColumns="true" lineSeparator="\n"/>
+  </step>
 
   <!-- connections -->
-  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection"><source step="LocationInput" endpoint="out"/><target step="JsonCall"      endpoint="in"/></connection>
-  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection"><source step="JsonCall"      endpoint="Raw"/><target    step="RawOutput"      endpoint="in"/></connection>
-  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection"><source step="JsonCall"      endpoint="Items"/><target  step="ItemsOutput"    endpoint="in"/></connection>
-  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection"><source step="JsonCall"      endpoint="Attributes"/><target step="AttributesOutput" endpoint="in"/></connection>
-  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection"><source step="JsonCall"      endpoint="out"/><target    step="OutPass"        endpoint="in"/></connection>
+  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection"><source step="LocationInput" endpoint="out"/><target step="JsonCall" endpoint="in"/></connection>
+  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection"><source step="JsonCall" endpoint="Raw"/><target step="RawOutput" endpoint="in"/></connection>
+  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection"><source step="JsonCall" endpoint="out"/><target step="OutPass"  endpoint="in"/></connection>
+  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection"><source step="JsonCall" endpoint="out"/><target step="BodyOutput" endpoint="in"/></connection>
 
 </purity-config>
+
 
