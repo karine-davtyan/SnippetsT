@@ -1,14 +1,11 @@
-2025-06-07 23:04:09 [INFO]    com.ataccama.lib.securityutil.javaencryption.DefaultEncryptionEngine messageId=createDefaultKeyProvider reason=the 'properties.encryption.keystore' property not specified
-2025-06-07 23:04:09 [INFO]    com.ataccama.lib.securityutil.javaencryption.DefaultEncryptionEngine messageId=createDefaultKeyProvider reason=the 'internal.encryption.keystore' property not specified
-07.06.2025 23:04:09 [INFO]     Switching to logging setup from C:\Users\kdavty01\AppData\Local\Temp\loggingConfig3791065389542028343.tmp
-07.06.2025 23:04:10 [INFO]     Using following licenses:
-07.06.2025 23:04:10 [INFO]       C:\Users\kdavty01\Downloads\ataccama-one-desktop-14.5.1.231204-9325-35ed3d49-windows\runtime\license_keys\license_teranet_USER_v14_subscription_2025-09-28.plf
-07.06.2025 23:04:10 [INFO]     ============================================================
-07.06.2025 23:04:10 [INFO]     This is a subscription USER license for developers' laptops for "Teranet". It expires on 2025-09-28.
-07.06.2025 23:04:10 [INFO]     ============================================================
-07.06.2025 23:04:10 [INFO]     Using Ataccama DQC configuration file C:\Users\kdavty01\Downloads\Workflow Workspace11\OpenCommercial\json_try1.plan
-07.06.2025 23:04:10 [INFO]     Using runtime configuration file C:\Users\kdavty01\AppData\Local\Temp\runtimeCfg16147671688797305331.tmp
-07.06.2025 23:04:10 [WARNING]  Output will be empty. At least one output column should be specified. [ResponseOutput (Text File Writer, offending property path=/)]
-07.06.2025 23:04:10 [FATAL]    The endpoint 'out' needs at least 1 input/s associated with it. [Json Call (Json Call)]
-07.06.2025 23:04:10 [FATAL]    Invalid JSON path: $.data.location.draftVersion.catalogItems.edges[*].node [Json Call (Json Call, offending property path=/reader/dataStreams[0]/path)]
-07.06.2025 23:04:10 [FATAL]    Unable to use the config file provided, exiting.
+2025-06-08 00:53:49 [INFO]    com.ataccama.lib.securityutil.javaencryption.DefaultEncryptionEngine messageId=createDefaultKeyProvider reason=the 'properties.encryption.keystore' property not specified
+2025-06-08 00:53:49 [INFO]    com.ataccama.lib.securityutil.javaencryption.DefaultEncryptionEngine messageId=createDefaultKeyProvider reason=the 'internal.encryption.keystore' property not specified
+08.06.2025 00:53:49 [INFO]     Switching to logging setup from C:\Users\kdavty01\AppData\Local\Temp\loggingConfig5594492388310272446.tmp
+08.06.2025 00:53:49 [INFO]     Using following licenses:
+08.06.2025 00:53:49 [INFO]       C:\Users\kdavty01\Downloads\ataccama-one-desktop-14.5.1.231204-9325-35ed3d49-windows\runtime\license_keys\license_teranet_USER_v14_subscription_2025-09-28.plf
+08.06.2025 00:53:49 [INFO]     ============================================================
+08.06.2025 00:53:49 [INFO]     This is a subscription USER license for developers' laptops for "Teranet". It expires on 2025-09-28.
+08.06.2025 00:53:49 [INFO]     ============================================================
+08.06.2025 00:53:49 [INFO]     Using Ataccama DQC configuration file C:\Users\kdavty01\Downloads\Workflow Workspace11\OpenCommercial\json_try1.plan
+08.06.2025 00:53:49 [INFO]     Using runtime configuration file C:\Users\kdavty01\AppData\Local\Temp\runtimeCfg8756078866350195959.tmp
+08.06.2025 00:53:50 [FATAL]    Error 'Element connection: attribute 'className' is not present' occurred.
