@@ -1,12 +1,32 @@
-# ---  set variables  ---
-$Url  = "https://YOUR_REAL_PATH/graphql"          # paste the full URL here
-$Auth = "Basic YWRtaW46MTIzNA=="                  # paste everything AFTER 'Authorization: '
-$Body = Get-Content -Raw .\body.json
 
-# ---  fire the request  ---
-Invoke-RestMethod `
-  -Method POST `
-  -Uri $Url `
-  -Headers @{ "Authorization" = $Auth; "Content-Type" = "application/json" } `
-  -Body   $Body `
-  -OutFile response.json
+PS C:\Users\kdavty01>
+>> # ---  set variables  ---
+>> $Url  = "https://teranet.prod.ataccama.online/graphql"
+>> $Auth = "Basic YWRtaW46TGFlZ2V2YWVHYWp1RDlpZXF1ZWljaG9vRG9uaWVwYTA="
+>> $Body = Get-Content -Raw .\body.json
+>>
+>> # ---  fireBasic YWRtaW46TGFlZ2V2YWVHYWp1RDlpZXF1ZWljaG9vRG9uaWVwYTA= the request  ---
+>> Invoke-RestMethod `
+>>   -Method POST `
+>>   -Uri $Url `
+>>   -Headers @{ "Authorization" = $Auth; "Content-Type" = "application/json" } `
+>>   -Body   $Body `
+>>   -OutFile response.json
+Get-Content : Cannot find path 'C:\Users\kdavty01\body.json' because it does not exist.
+At line:5 char:9
++ $Body = Get-Content -Raw .\body.json
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\Users\kdavty01\body.json:String) [Get-Content], ItemNotFoundExceptio
+   n
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetContentCommand
+
+Invoke-RestMethod : The remote server returned an error: (400) Bad Request.
+At line:8 char:1
++ Invoke-RestMethod `
++ ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-RestMethod], WebExc
+   eption
+    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeRestMethodCommand
+
+PS C:\Users\kdavty01>
+
