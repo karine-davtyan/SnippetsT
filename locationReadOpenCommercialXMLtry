@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <purity-config version="14.5.1.231204-6829-cc8f270d">
 
-  <step id="LocationInput" className="com.ataccama.dqc.tasks.io.text.read.TextFileReader" mode="NORMAL">
+  <step id="LocationInput" className="com.ataccama.dqc.tasks.io.text.read.TextFileReader" mode="NORMAL" disabled="false">
     <properties fileName="./location_gids.csv" fieldSeparator=";" encoding="UTF-8" lineSeparator="\n" numberOfLinesInHeader="1">
       <columns>
-        <textReaderColumn name="src_locationGid" type="STRING"/>
+        <textReaderColumn name="src_locationGid" type="STRING" ignore="false"/>
       </columns>
     </properties>
   </step>
 
-  <step id="JsonCall" className="com.ataccama.dqc.tasks.io.json.call.JsonCall" mode="NORMAL">
-    <properties method="POST" url="https://YOUR_URL/graphql" encoding="UTF-8" templateBeginMark="#" templateEndMark="#">
+  <step id="JsonCall" className="com.ataccama.dqc.tasks.io.json.call.JsonCall" mode="NORMAL" disabled="false">
+    <properties method="POST" url="https://YOUR_URL/graphql"
+                encoding="UTF-8" templateBeginMark="#"
+                templateEndMark="#"
+                parseErrorResponse="true"
+                logResponseCode="true">
       <headers>
-        <header name="Content-Type" value="application/json"/>
+        <header name="Content-Type"  value="application/json"/>
         <header name="Authorization" value="Bearer YOUR_TOKEN"/>
       </headers>
       <inputTemplate>{
@@ -21,7 +25,7 @@
       }</inputTemplate>
       <reader>
         <dataStreams>
-          <rootJsonStreamConfig name="Raw" path="$">
+          <rootJsonStreamConfig name="Raw" path="$" minOneRecord="false">
             <attributes>
               <attribute path="$" name="raw_json" type="STRING"/>
             </attributes>
@@ -32,20 +36,32 @@
     </properties>
   </step>
 
-  <step id="RawOutput" className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" mode="NORMAL">
-    <properties writeHeader="false" fileName="raw.json" fieldSeparator=";" writeAllColumns="true" encoding="UTF-8" lineSeparator="\n"/>
+  <step id="RawOutput" className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" mode="NORMAL" disabled="false">
+    <properties writeHeader="false" fileName="raw.json"
+                fieldSeparator=";" writeAllColumns="true"
+                encoding="UTF-8" lineSeparator="\n"/>
   </step>
 
-  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection">
+  <step id="OutPass" className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter" mode="NORMAL" disabled="false">
+    <properties writeHeader="false" fileName="out_passthrough.csv"
+                fieldSeparator=";" writeAllColumns="true"
+                encoding="UTF-8" lineSeparator="\n"/>
+  </step>
+
+  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
     <source step="LocationInput" endpoint="out"/>
     <target step="JsonCall"      endpoint="in"/>
   </connection>
 
-  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection">
+  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
     <source step="JsonCall" endpoint="Raw"/>
     <target step="RawOutput" endpoint="in"/>
   </connection>
 
-</purity-config>
+  <connection className="com.ataccama.dqc.model.elements.connections.StandardFlowConnection" disabled="false">
+    <source step="JsonCall" endpoint="out"/>
+    <target step="OutPass"  endpoint="in"/>
+  </connection>
 
+</purity-config>
 
