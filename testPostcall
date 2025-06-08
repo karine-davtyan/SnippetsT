@@ -2,3 +2,5 @@
   "query": "query GetLocationCatalogItems($locationGid:GID!){location(gid:$locationGid){draftVersion{name catalogItems{edges{node{gid draftVersion{name} publishedVersion{description attributes{edges{node{draftVersion{name description}}}}}}}}}}}",
   "variables": { "locationGid": "76639008-0000-7000-0000-00001402c8d6" }
 }
+
+{"errors":[{"message":"The node was not found.","locations":[{"line":1,"column":50}],"path":["location"],"extensions":{"reason":"NOT_FOUND","code":"NOT_FOUND","gid":"76639008-0000-7000-0000-00001402c8d6","metricCategory":"NO_ERROR","time":"2025-06-08T06:50:18.939905915Z","type":"location","hash":"b3c91d718ef90f7502e08fd5fe378627","classification":"DataFetchingException"}}],"data":{"location":null},"extensions":{"__$r":"Wxw3`!UXLx!8+fYU|S[IMmSh_OGBc*;<rp(GWn>\\2;!'sH\"G3H}sJtU+kAgj=uc?,noU7i`#>=V#ZUTr\\*&QJ:<!9mU0?4|s}$ft_D`-!,\\<Ym?HTBMf@(+,\\$#8Y93-{\\n'La6$K@Ws.D"}}
