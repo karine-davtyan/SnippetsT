@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <purity-config version="14.5.1.231204-6829-cc8f270d">
 
-  <!-- 1) INPUT: list of location GIDs -->
+  <!-- 1) INPUT: one column of location GIDs -->
   <step id="LocationInput"
-        className="com.ataccama.dqc.tasks.io.text.read.TextFileReader"
-        mode="NORMAL">
+        className="com.ataccama.dqc.tasks.io.text.read.TextFileReader">
     <properties fileName="data/in/location_gids.csv"
                 fieldSeparator=";"
                 encoding="UTF-8"
@@ -18,14 +17,13 @@
 
   <connection>
     <source step="LocationInput" endpoint="out"/>
-    <target step="Json Call"   endpoint="in"/>
+    <target step="JsonCall"      endpoint="in"/>
   </connection>
 
 
-  <!-- 2) JSON CALL: GraphQL per GID -->
-  <step id="Json Call"
-        className="com.ataccama.dqc.tasks.io.json.call.JsonCall"
-        mode="NORMAL">
+  <!-- 2) JSON Call: execute your GraphQL query -->
+  <step id="JsonCall"
+        className="com.ataccama.dqc.tasks.io.json.call.JsonCall">
     <properties method="POST"
                 url="https://teranet.prod.ataccama.online/graphql"
                 encoding="UTF-8"
@@ -35,6 +33,7 @@
         <header name="Content-Type"  value="application/json"/>
         <header name="Authorization" value="Bearer YWRtaW46TGFlZ2V2YWVHYWp1RDlpZXF1ZWljaG9vRG9uaWVwYTA="/>
       </headers>
+
       <inputTemplate>{
         "query":"query GetLocationCatalogItems($locationGid:GID!){location(gid:$locationGid){draftVersion{name catalogItems{edges{node{gid draftVersion{name} publishedVersion{description attributes{edges{node{draftVersion{name description}}}}}}}}}}}",
         "variables":{"locationGid":"#src_locationGid#"}
@@ -43,103 +42,78 @@
       <reader>
         <dataStreams>
 
-          <!-- A) RAW JSON: capture entire payload as one string -->
-          <rootJsonStreamConfig name="RawJson"
-                                path="$">
+          <!-- 3A) Flatten catalog items -->
+          <rootJsonStreamConfig name="Items"
+                                path="$.data.location.draftVersion.catalogItems.edges[*]">
             <attributes>
-              <attribute path="$" name="raw_json" type="STRING"/>
+              <attribute path="node.gid"                           name="item_gid"   type="STRING"/>
+              <attribute path="node.draftVersion.name"            name="item_name"  type="STRING"/>
+              <attribute path="node.publishedVersion.description" name="item_desc"  type="STRING"/>
             </attributes>
-            <dataStreams/>
-          </rootJsonStreamConfig>
-
-
-          <!-- B) ROOT on draftVersion -->
-          <rootJsonStreamConfig name="Root"
-                                path="$.data.location.draftVersion">
             <shadowColumns>
               <shadowColumnDef name="src_locationGid"
                                defaultExpression="in.src_locationGid"
                                type="STRING"/>
             </shadowColumns>
-            <dataStreams>
 
-              <!-- C) per‐item -->
-              <childJsonStreamConfig name="Item"
-                                     path="$.catalogItems.edges[*]">
+            <dataStreams>
+              <!-- 3B) Flatten each attribute of each item -->
+              <childJsonStreamConfig name="Attributes"
+                                     path="$.node.publishedVersion.attributes.edges[*]">
                 <attributes>
-                  <attribute path="node.gid"                           name="item_gid"   type="STRING"/>
-                  <attribute path="node.draftVersion.name"            name="item_name"  type="STRING"/>
-                  <attribute path="node.publishedVersion.description" name="item_desc"  type="STRING"/>
+                  <attribute path="node.draftVersion.name"        name="attr_name" type="STRING"/>
+                  <attribute path="node.draftVersion.description" name="attr_desc" type="STRING"/>
                 </attributes>
                 <shadowColumns>
                   <shadowColumnDef name="src_locationGid"
-                                   defaultExpression="in.src_locationGid"
-                                   type="STRING"/>
+                                   defaultExpression="in.src_locationGid" type="STRING"/>
+                  <shadowColumnDef name="item_gid"
+                                   defaultExpression="in.item_gid"      type="STRING"/>
+                  <shadowColumnDef name="item_name"
+                                   defaultExpression="in.item_name"     type="STRING"/>
+                  <shadowColumnDef name="item_desc"
+                                   defaultExpression="in.item_desc"     type="STRING"/>
                 </shadowColumns>
-                <dataStreams>
-
-                  <!-- D) per‐attribute -->
-                  <childJsonStreamConfig name="Attribute"
-                                         path="$.node.publishedVersion.attributes.edges[*]">
-                    <attributes>
-                      <attribute path="node.draftVersion.name"        name="attr_name" type="STRING"/>
-                      <attribute path="node.draftVersion.description" name="attr_desc" type="STRING"/>
-                    </attributes>
-                    <shadowColumns>
-                      <shadowColumnDef name="src_locationGid"
-                                       defaultExpression="in.src_locationGid" type="STRING"/>
-                      <shadowColumnDef name="item_gid"   defaultExpression="in.item_gid"   type="STRING"/>
-                      <shadowColumnDef name="item_name"  defaultExpression="in.item_name"  type="STRING"/>
-                      <shadowColumnDef name="item_desc"  defaultExpression="in.item_desc"  type="STRING"/>
-                    </shadowColumns>
-                  </childJsonStreamConfig>
-
-                </dataStreams>
+                <dataStreams/>
               </childJsonStreamConfig>
-
             </dataStreams>
+
           </rootJsonStreamConfig>
 
         </dataStreams>
       </reader>
     </properties>
-    <visual-constraints layout="vertical" bounds="300,50,450,350"/>
   </step>
 
 
-  <!-- 3) RAW JSON OUTPUT -->
-  <step id="RawOutput"
-        className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter"
-        mode="NORMAL">
-    <properties writeHeader="false"
-                fileName="data/out/raw_response.json"
+  <!-- 4A) OUTPUT: catalog items -->
+  <step id="ItemsOutput"
+        className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter">
+    <properties writeHeader="true"
+                fileName="data/out/catalog_items.csv"
                 fieldSeparator=";"
                 writeAllColumns="true"
                 encoding="UTF-8"
                 lineSeparator="\n"/>
   </step>
   <connection>
-    <source step="Json Call" endpoint="RawJson"/>
-    <target step="RawOutput" endpoint="in"/>
+    <source step="JsonCall" endpoint="Items"/>
+    <target step="ItemsOutput" endpoint="in"/>
   </connection>
 
-
-  <!-- 4) FLATTENED ATTRIBUTES OUTPUT -->
-  <step id="ResponseOutput"
-        className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter"
-        mode="NORMAL">
+  <!-- 4B) OUTPUT: item attributes -->
+  <step id="AttributesOutput"
+        className="com.ataccama.dqc.tasks.io.text.write.TextFileWriter">
     <properties writeHeader="true"
-                fileName="data/out/catalog_items_with_attributes.csv"
+                fileName="data/out/catalog_attributes.csv"
                 fieldSeparator=";"
                 writeAllColumns="true"
                 encoding="UTF-8"
                 lineSeparator="\n"/>
   </step>
   <connection>
-    <source step="Json Call" endpoint="Attribute"/>
-    <target step="ResponseOutput" endpoint="in"/>
+    <source step="JsonCall" endpoint="Attributes"/>
+    <target step="AttributesOutput" endpoint="in"/>
   </connection>
 
 </purity-config>
-
-
