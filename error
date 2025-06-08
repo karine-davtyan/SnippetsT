@@ -1,14 +1,14 @@
-2025-06-08 01:01:46 [INFO]    com.ataccama.lib.securityutil.javaencryption.DefaultEncryptionEngine messageId=createDefaultKeyProvider reason=the 'properties.encryption.keystore' property not specified
-2025-06-08 01:01:46 [INFO]    com.ataccama.lib.securityutil.javaencryption.DefaultEncryptionEngine messageId=createDefaultKeyProvider reason=the 'internal.encryption.keystore' property not specified
-08.06.2025 01:01:46 [INFO]     Switching to logging setup from C:\Users\kdavty01\AppData\Local\Temp\loggingConfig5542272971153730456.tmp
-08.06.2025 01:01:46 [INFO]     Using following licenses:
-08.06.2025 01:01:46 [INFO]       C:\Users\kdavty01\Downloads\ataccama-one-desktop-14.5.1.231204-9325-35ed3d49-windows\runtime\license_keys\license_teranet_USER_v14_subscription_2025-09-28.plf
-08.06.2025 01:01:46 [INFO]     ============================================================
-08.06.2025 01:01:46 [INFO]     This is a subscription USER license for developers' laptops for "Teranet". It expires on 2025-09-28.
-08.06.2025 01:01:46 [INFO]     ============================================================
-08.06.2025 01:01:46 [INFO]     Using Ataccama DQC configuration file C:\Users\kdavty01\Downloads\Workflow Workspace11\OpenCommercial\json_try1.plan
-08.06.2025 01:01:46 [INFO]     Using runtime configuration file C:\Users\kdavty01\AppData\Local\Temp\runtimeCfg17376673802313102327.tmp
-08.06.2025 01:01:47 [FATAL]    Unknown column 'in.item_gid' at 1-11 in 'in.item_gid'. [JsonCall (Json Call, offending property path=/reader/dataStreams[0]/dataStreams[0]/shadowColumns[1]/defaultExpression)]
-08.06.2025 01:01:47 [FATAL]    Unknown column 'in.item_name' at 1-12 in 'in.item_name'. [JsonCall (Json Call, offending property path=/reader/dataStreams[0]/dataStreams[0]/shadowColumns[2]/defaultExpression)]
-08.06.2025 01:01:47 [FATAL]    Unknown column 'in.item_desc' at 1-12 in 'in.item_desc'. [JsonCall (Json Call, offending property path=/reader/dataStreams[0]/dataStreams[0]/shadowColumns[3]/defaultExpression)]
-08.06.2025 01:01:47 [FATAL]    Unable to use the config file provided, exiting.
+2025-06-08 01:19:12 [INFO]    com.ataccama.lib.securityutil.javaencryption.DefaultEncryptionEngine messageId=createDefaultKeyProvider reason=the 'properties.encryption.keystore' property not specified
+2025-06-08 01:19:12 [INFO]    com.ataccama.lib.securityutil.javaencryption.DefaultEncryptionEngine messageId=createDefaultKeyProvider reason=the 'internal.encryption.keystore' property not specified
+08.06.2025 01:19:12 [INFO]     Switching to logging setup from C:\Users\kdavty01\AppData\Local\Temp\loggingConfig4520503314252404855.tmp
+08.06.2025 01:19:13 [INFO]     Using following licenses:
+08.06.2025 01:19:13 [INFO]       C:\Users\kdavty01\Downloads\ataccama-one-desktop-14.5.1.231204-9325-35ed3d49-windows\runtime\license_keys\license_teranet_USER_v14_subscription_2025-09-28.plf
+08.06.2025 01:19:13 [INFO]     ============================================================
+08.06.2025 01:19:13 [INFO]     This is a subscription USER license for developers' laptops for "Teranet". It expires on 2025-09-28.
+08.06.2025 01:19:13 [INFO]     ============================================================
+08.06.2025 01:19:13 [INFO]     Using Ataccama DQC configuration file C:\Users\kdavty01\Downloads\Workflow Workspace11\OpenCommercial\json_try1.plan
+08.06.2025 01:19:13 [INFO]     Using runtime configuration file C:\Users\kdavty01\AppData\Local\Temp\runtimeCfg9925019912040917703.tmp
+08.06.2025 01:19:13 [FATAL]    Unknown column 'in.item_gid' at 1-11 in 'in.item_gid'. [JsonCall (Json Call, offending property path=/reader/dataStreams[0]/dataStreams[0]/shadowColumns[1]/defaultExpression)]
+08.06.2025 01:19:13 [FATAL]    Unknown column 'in.item_name' at 1-12 in 'in.item_name'. [JsonCall (Json Call, offending property path=/reader/dataStreams[0]/dataStreams[0]/shadowColumns[2]/defaultExpression)]
+08.06.2025 01:19:13 [FATAL]    Unknown column 'in.item_desc' at 1-12 in 'in.item_desc'. [JsonCall (Json Call, offending property path=/reader/dataStreams[0]/dataStreams[0]/shadowColumns[3]/defaultExpression)]
+08.06.2025 01:19:13 [FATAL]    Unable to use the config file provided, exiting.
